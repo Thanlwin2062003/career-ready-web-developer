@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HTML & CSS Notes</title>
+
+    <style>
+
+        /* Universal Selector */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Element Selector */
+        body{
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1{
+            color: navy;
+        }
+
+        /* Class Selector */
+        .title{
+            color: green;
+        }
+
+        /* ID Selector */
+        #special{
+            color: red;
+        }
+
+        /* Box Model */
+        .box{
+            width: 300px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid black;
+        }
+
+        /* Flexbox */
+        .flex-container{
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .flex-item{
+            background: lightblue;
+            padding: 20px;
+        }
+
+        /* Grid */
+        .grid-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .grid-item{
+            background: lightgreen;
+            padding: 20px;
+        }
+
+        /* Hover Effect */
+        button{
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover{
+            background: orange;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media(max-width:768px){
+
+            .flex-container{
+                flex-direction: column;
+            }
+
+            .grid-container{
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Headings -->
+    <h1>HTML & CSS Complete Notes</h1>
+
+    <h2>Heading 2</h2>
+    <h3>Heading 3</h3>
+    <h4>Heading 4</h4>
+    <h5>Heading 5</h5>
+    <h6>Heading 6</h6>
+
+    <hr>
+
+    <!-- Paragraph -->
+    <p>This is a paragraph.</p>
+
+    <hr>
+
+    <!-- Text Formatting -->
+    <p>
+        <b>Bold</b><br>
+        <strong>Strong</strong><br>
+        <i>Italic</i><br>
+        <em>Emphasis</em><br>
+        <u>Underline</u><br>
+        <mark>Highlight</mark><br>
+        <small>Small Text</small><br>
+        <del>Deleted</del><br>
+        <ins>Inserted</ins>
+    </p>
+
+    <hr>
+
+    <!-- Links -->
+    <a href="https://google.com"
+       target="_blank">
+       Visit Google
+    </a>
+
+    <hr>
+
+    <!-- Image -->
+    <img src="image.jpg"
+         alt="Example Image"
+         width="200">
+
+    <hr>
+
+    <!-- Ordered List -->
+    <h2>Ordered List</h2>
+
+    <ol>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+    </ol>
+
+    <!-- Unordered List -->
+    <h2>Unordered List</h2>
+
+    <ul>
+        <li>Apple</li>
+        <li>Mango</li>
+        <li>Orange</li>
+    </ul>
+
+    <hr>
+
+    <!-- Table -->
+    <h2>Table</h2>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+
+        <tr>
+            <td>John</td>
+            <td>25</td>
+        </tr>
+
+        <tr>
+            <td>Mary</td>
+            <td>22</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!-- Form -->
+    <h2>Form</h2>
+
+    <form>
+
+        <label>Name</label><br>
+
+        <input type="text"
+               placeholder="Enter name">
+
+        <br><br>
+
+        <label>Email</label><br>
+
+        <input type="email"
+               placeholder="Enter email">
+
+        <br><br>
+
+        <label>Password</label><br>
+
+        <input type="password"
+               placeholder="Enter password">
+
+        <br><br>
+
+        <button type="submit">
+            Submit
+        </button>
+
+    </form>
+
+    <hr>
+
+    <!-- Div -->
+    <div class="box">
+        This is a DIV element.
+    </div>
+
+    <!-- Span -->
+    <p>
+        My favorite color is
+        <span id="special">Red</span>.
+    </p>
+
+    <hr>
+
+    <!-- Semantic HTML -->
+    <header>
+        <h2>Header</h2>
+    </header>
+
+    <nav>
+        Navigation Menu
+    </nav>
+
+    <main>
+
+        <section>
+
+            <article>
+
+                <h3>Article Title</h3>
+
+                <p>
+                    Article Content
+                </p>
+
+            </article>
+
+        </section>
+
+        <aside>
+            Sidebar Content
+        </aside>
+
+    </main>
+
+    <footer>
+        Footer Content
+    </footer>
+
+    <hr>
+
+    <!-- Class Example -->
+    <h2 class="title">
+        Class Selector Example
+    </h2>
+
+    <hr>
+
+    <!-- Flexbox -->
+    <h2>Flexbox Example</h2>
+
+    <div class="flex-container">
+
+        <div class="flex-item">1</div>
+
+        <div class="flex-item">2</div>
+
+        <div class="flex-item">3</div>
+
+    </div>
+
+    <hr>
+
+    <!-- Grid -->
+    <h2>Grid Example</h2>
+
+    <div class="grid-container">
+
+        <div class="grid-item">A</div>
+
+        <div class="grid-item">B</div>
+
+        <div class="grid-item">C</div>
+
+    </div>
+
+</body>
+</html>
