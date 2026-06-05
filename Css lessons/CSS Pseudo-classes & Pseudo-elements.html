@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Pseudo-classes & Pseudo-elements</title>
+  <style>
+    /* === PSEUDO-CLASS: HOVER === */
+    .hover-example {
+      width: 100px;
+      height: 100px;
+      background-color: limegreen;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+    }
+    .hover-example:hover {
+      background-color: crimson;
+      width: 150px;
+      height: 150px;
+    }
+
+    /* === PSEUDO-CLASS: FIRST-CHILD === */
+    .first-child-example {
+      color: crimson;
+    }
+    .first-child-example:first-child {
+      color: limegreen;
+    }
+
+    /* === BONUS: OTHER PSEUDO-CLASSES === */
+    .focus-example:focus {
+      outline: 3px solid limegreen;
+      background-color: #f0f0f0;
+    }
+
+    .nth-example:nth-child(odd) {
+      background-color: #e0e0e0;
+    }
+
+    /* === PSEUDO-ELEMENT: AFTER === */
+    .chapter {
+      margin: 20px 0 0 0;
+      padding: 10px;
+      border-left: 3px solid #ccc;
+    }
+    .chapter::after {
+      content: "❦";
+      font-size: 50px;
+      text-align: center;
+      display: block;
+      margin-top: 10px;
+      color: #666;
+    }
+
+    /* === BONUS: PSEUDO-ELEMENT: BEFORE === */
+    .quote::before {
+      content: "“";
+      font-size: 40px;
+      color: limegreen;
+      font-family: serif;
+    }
+    .quote::after {
+      content: "”";
+      font-size: 40px;
+      color: limegreen;
+      font-family: serif;
+    }
+
+    /* === GENERAL STYLES FOR READABILITY === */
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.5;
+    }
+    h2 {
+      color: #333;
+      border-bottom: 2px solid limegreen;
+      padding-bottom: 5px;
+      margin-top: 30px;
+    }
+    ol, ul {
+      margin-bottom: 20px;
+    }
+    li {
+      margin: 5px 0;
+      padding: 5px;
+    }
+    input {
+      padding: 8px;
+      margin: 10px 0;
+      display: block;
+      width: 200px;
+    }
+    .note {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-left: 4px solid limegreen;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Pseudo-classes & Pseudo-elements</h1>
+
+  <!-- EXAMPLE 1: HOVER -->
+  <h2>1. :hover Pseudo-class</h2>
+  <div class="hover-example">Hover your mouse over me</div>
+
+  <!-- EXAMPLE 2: FIRST-CHILD -->
+  <h2>2. :first-child Pseudo-class</h2>
+  <p>The first item should be limegreen, the rest crimson:</p>
+  <ol>
+    <li class="first-child-example">First</li>
+    <li class="first-child-example">Second</li>
+    <li class="first-child-example">Third</li>
+  </ol>
+
+  <!-- BONUS: FOCUS -->
+  <h2>3. :focus Pseudo-class (Bonus)</h2>
+  <p>Click or tab into this input field:</p>
+  <input type="text" class="focus-example" placeholder="Focus on me">
+
+  <!-- BONUS: NTH-CHILD -->
+  <h2>4. :nth-child(odd) Pseudo-class (Bonus)</h2>
+  <p>Odd-numbered items have a gray background:</p>
+  <ul>
+    <li class="nth-example">Item 1 (odd)</li>
+    <li class="nth-example">Item 2 (even)</li>
+    <li class="nth-example">Item 3 (odd)</li>
+    <li class="nth-example">Item 4 (even)</li>
+    <li class="nth-example">Item 5 (odd)</li>
+  </ul>
+
+  <!-- EXAMPLE 5: PSEUDO-ELEMENT ::AFTER -->
+  <h2>5. ::after Pseudo-element (Fleuron / End mark)</h2>
+  <div class="chapter">This is a chapter of my book.</div>
+  <div class="chapter">This is a second chapter of my book.</div>
+
+  <!-- BONUS: PSEUDO-ELEMENT ::BEFORE -->
+  <h2>6. ::before Pseudo-element (Bonus)</h2>
+  <div class="quote">This is a quoted sentence with decorative quotation marks added by CSS.</div>
+
+  <div class="note">
+    <strong>💡 Quick Reference:</strong><br>
+    • <code>:hover</code> → when mouse is over element<br>
+    • <code>:first-child</code> → first child of its parent<br>
+    • <code>:focus</code> → when element is focused (input, button, etc.)<br>
+    • <code>:nth-child(odd/even)</code> → pattern-based selection<br>
+    • <code>::before</code> and <code>::after</code> → insert content via CSS (note the double colon)
+  </div>
+
+</body>
+</html>
