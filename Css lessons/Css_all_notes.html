@@ -3,371 +3,1073 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML & CSS Notes</title>
+    <title>Complete HTML & CSS Notes</title>
     <style>
-        /* Universal Selector */
+        /* ===== CSS RESET ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Element Selector */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            line-height: 1.6;
+            background-color: #f5f5f5;
         }
 
+        /* ===== HEADINGS ===== */
         h1 {
-            color: navy;
+            color: #2c3e50;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 2.5em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
         }
 
-        /* Class Selector */
-        .title {
-            color: green;
+        h2 {
+            color: #2980b9;
+            margin: 40px 0 20px;
+            padding: 10px;
+            background: linear-gradient(to right, #ecf0f1, transparent);
+            border-left: 5px solid #3498db;
         }
 
-        /* ID Selector */
-        #special {
-            color: red;
+        h3 {
+            color: #16a085;
+            margin: 25px 0 15px;
         }
 
-        /* Box Model */
-        .box {
-            width: 300px;
+        h4, h5, h6 {
+            color: #7f8c8d;
+            margin: 15px 0 10px;
+        }
+
+        /* ===== NOTES STYLING ===== */
+        .note {
+            background-color: #ffffff;
+            border-left: 4px solid #3498db;
             padding: 20px;
             margin: 20px 0;
-            border: 2px solid black;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Flexbox */
-        .flex-container {
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .tip {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .important {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        /* ===== CODE STYLING ===== */
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #e74c3c;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        pre code {
+            background: none;
+            color: #ecf0f1;
+            padding: 0;
+        }
+
+        /* ===== BOX MODEL DEMO ===== */
+        .box-model-demo {
+            width: 300px;
+            padding: 30px;
+            margin: 30px auto;
+            border: 5px solid #3498db;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+
+        /* ===== FLEXBOX DEMO ===== */
+        .flex-demo {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
         }
 
-        .flex-item {
-            background: lightblue;
-            padding: 20px;
+        .flex-item-demo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
         }
 
-        /* Grid */
-        .grid-container {
+        /* ===== GRID DEMO ===== */
+        .grid-demo {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            margin-top: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
         }
 
-        .grid-item {
-            background: lightgreen;
-            padding: 20px;
+        .grid-item-demo {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
         }
 
-        /* Hover Effect */
-        button {
+        /* ===== TABLE STYLING ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
             padding: 10px;
-            transition: 0.3s;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* ===== FORM STYLING ===== */
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 20px 0;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background: orange;
-            cursor: pointer;
+            background-color: #2980b9;
         }
 
-        /* Responsive Design */
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
-            .flex-container {
-                flex-direction: column;
+            body {
+                padding: 10px;
             }
-            .grid-container {
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .grid-demo {
                 grid-template-columns: 1fr;
             }
+
+            .flex-demo {
+                flex-direction: column;
+            }
+
+            pre {
+                font-size: 14px;
+            }
         }
 
-        /* Notes styling */
-        .note {
-            background-color: #f9f9f9;
-            border-left: 4px solid #007bff;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 4px;
+        /* ===== UTILITY CLASSES ===== */
+        .text-center { text-align: center; }
+        .text-bold { font-weight: bold; }
+        .mt-20 { margin-top: 20px; }
+        .mb-20 { margin-bottom: 20px; }
+        .p-20 { padding: 20px; }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .code-explanation {
-            color: #666;
-            font-style: italic;
-        }
-
-        hr {
-            margin: 30px 0;
-        }
-
-        section {
-            margin-bottom: 40px;
+        .animate {
+            animation: fadeIn 1s ease-out;
         }
     </style>
 </head>
 <body>
-    <!-- Headings -->
-    <section>
-        <h1>HTML & CSS Complete Notes</h1>
-        <div class="note">
-            <strong>h1 explained:</strong> h1 is the most important heading tag. It should appear only once per page for SEO and accessibility. Search engines use h1 to understand page content.
-        </div>
-        <h2>Heading 2</h2>
-        <h3>Heading 3</h3>
-        <h4>Heading 4</h4>
-        <h5>Heading 5</h5>
-        <h6>Heading 6</h6>
-        <div class="note">
-            <strong>Heading hierarchy:</strong> h2 through h6 are subheadings. h2 is for major sections, h3 for subsections, and so on. They create a document hierarchy and help organize content structure.
-        </div>
-    </section>
 
-    <hr>
+    <!-- ===== MAIN TITLE ===== -->
+    <h1>📚 Complete HTML & CSS Reference Guide</h1>
 
-    <!-- Paragraph -->
-    <section>
-        <p>This is a paragraph.</p>
-        <div class="note">
-            <strong>p tag:</strong> Defines a paragraph. Browsers automatically add margin before and after paragraphs to separate blocks of text.
-        </div>
-    </section>
+    <div class="tip">
+        <strong>💡 How to use this guide:</strong> This document contains all essential HTML tags and CSS properties with examples. Use it as a quick reference while coding.
+    </div>
 
-    <hr>
+    <!-- ===== HTML FUNDAMENTALS ===== -->
+    <h2>1. HTML Document Structure</h2>
+    
+    <div class="note">
+        <h3>Basic HTML Template</h3>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Content goes here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <p><strong>Explanation:</strong> Every HTML document follows this structure. <code>&lt;!DOCTYPE&gt;</code> tells the browser it's HTML5. <code>&lt;head&gt;</code> contains metadata. <code>&lt;body&gt;</code> contains visible content.</p>
+    </div>
 
-    <!-- Text Formatting -->
-    <section>
-        <p>
-            <b>Bold</b><br>
-            <strong>Strong</strong><br>
-            <i>Italic</i><br>
-            <em>Emphasis</em><br>
-            <u>Underline</u><br>
-            <mark>Highlight</mark><br>
-            <small>Small Text</small><br>
-            <del>Deleted</del><br>
-            <ins>Inserted</ins>
-        </p>
-        <div class="note">
-            <strong>Text formatting tags:</strong><br>
-            • <code>&lt;b&gt;</code> - Bold without semantic importance<br>
-            • <code>&lt;strong&gt;</code> - Bold with semantic importance<br>
-            • <code>&lt;i&gt;</code> - Italic without emphasis<br>
-            • <code>&lt;em&gt;</code> - Italic with emphasis<br>
-            • <code>&lt;u&gt;</code> - Underlined text<br>
-            • <code>&lt;mark&gt;</code> - Highlighted text<br>
-            • <code>&lt;small&gt;</code> - Smaller text<br>
-            • <code>&lt;del&gt;</code> - Deleted text (strikethrough)<br>
-            • <code>&lt;ins&gt;</code> - Inserted text (underlined)
-        </div>
-    </section>
+    <!-- ===== HTML HEADINGS ===== -->
+    <h2>2. HTML Headings</h2>
+    
+    <h1>Heading 1 (h1)</h1>
+    <h2>Heading 2 (h2)</h2>
+    <h3>Heading 3 (h3)</h3>
+    <h4>Heading 4 (h4)</h4>
+    <h5>Heading 5 (h5)</h5>
+    <h6>Heading 6 (h6)</h6>
 
-    <hr>
-
-    <!-- Links -->
-    <section>
-        <a href="https://google.com" target="_blank">Visit Google</a>
-        <div class="note">
-            <strong>Anchor tag:</strong> <code>&lt;a&gt;</code> creates hyperlinks. <code>href</code> specifies the destination URL. <code>target="_blank"</code> opens the link in a new browser tab.
-        </div>
-    </section>
-
-    <hr>
-
-    <!-- Image -->
-    <section>
-        <img src="image.jpg" alt="Example Image" width="200">
-        <div class="note">
-            <strong>Image tag:</strong> <code>&lt;img&gt;</code> displays images. <code>src</code> specifies the image file path. <code>alt</code> provides alternative text for accessibility. <code>width</code> sets the image width.
-        </div>
-    </section>
-
-    <hr>
-
-    <!-- Lists -->
-    <section>
-        <h2>Ordered List</h2>
-        <ol>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-        </ol>
-        <div class="note">
-            <strong>Ordered list:</strong> <code>&lt;ol&gt;</code> creates a numbered list. <code>&lt;li&gt;</code> tags define each list item.
-        </div>
-
-        <h2>Unordered List</h2>
+    <div class="note">
+        <h3>Heading Best Practices:</h3>
         <ul>
-            <li>Apple</li>
-            <li>Mango</li>
-            <li>Orange</li>
+            <li><code>&lt;h1&gt;</code> - Use only once per page (main title)</li>
+            <li><code>&lt;h2&gt;</code> - Major section headings</li>
+            <li><code>&lt;h3&gt;</code> - Subsection headings</li>
+            <li>Maintain hierarchy (don't skip levels)</li>
+            <li>Important for SEO and accessibility</li>
         </ul>
-        <div class="note">
-            <strong>Unordered list:</strong> <code>&lt;ul&gt;</code> creates a bulleted list. <code>&lt;li&gt;</code> tags define each item.
-        </div>
-    </section>
+    </div>
 
-    <hr>
+    <!-- ===== TEXT ELEMENTS ===== -->
+    <h2>3. Text Formatting Elements</h2>
 
-    <!-- Table -->
-    <section>
-        <h2>Table</h2>
-        <table border="1">
+    <table>
+        <tr>
+            <th>Tag</th>
+            <th>Example</th>
+            <th>Usage</th>
+        </tr>
+        <tr>
+            <td><code>&lt;p&gt;</code></td>
+            <td><p>Paragraph text</p></td>
+            <td>Block of text</td>
+        </tr>
+        <tr>
+            <td><code>&lt;b&gt;</code></td>
+            <td><b>Bold text</b></td>
+            <td>Visual bold (no semantic meaning)</td>
+        </tr>
+        <tr>
+            <td><code>&lt;strong&gt;</code></td>
+            <td><strong>Important text</strong></td>
+            <td>Semantic importance</td>
+        </tr>
+        <tr>
+            <td><code>&lt;i&gt;</code></td>
+            <td><i>Italic text</i></td>
+            <td>Visual italic (no semantic meaning)</td>
+        </tr>
+        <tr>
+            <td><code>&lt;em&gt;</code></td>
+            <td><em>Emphasized text</em></td>
+            <td>Semantic emphasis</td>
+        </tr>
+        <tr>
+            <td><code>&lt;u&gt;</code></td>
+            <td><u>Underlined text</u></td>
+            <td>Underline</td>
+        </tr>
+        <tr>
+            <td><code>&lt;mark&gt;</code></td>
+            <td><mark>Highlighted text</mark></td>
+            <td>Highlight for reference</td>
+        </tr>
+        <tr>
+            <td><code>&lt;small&gt;</code></td>
+            <td><small>Smaller text</small></td>
+            <td>Fine print, copyright</td>
+        </tr>
+        <tr>
+            <td><code>&lt;del&gt;</code></td>
+            <td><del>Deleted text</del></td>
+            <td>Show removed content</td>
+        </tr>
+        <tr>
+            <td><code>&lt;ins&gt;</code></td>
+            <td><ins>Inserted text</ins></td>
+            <td>Show added content</td>
+        </tr>
+        <tr>
+            <td><code>&lt;sub&gt;</code></td>
+            <td>H<sub>2</sub>O</td>
+            <td>Subscript</td>
+        </tr>
+        <tr>
+            <td><code>&lt;sup&gt;</code></td>
+            <td>X<sup>2</sup></td>
+            <td>Superscript</td>
+        </tr>
+        <tr>
+            <td><code>&lt;br&gt;</code></td>
+            <td>Line<br>Break</td>
+            <td>Line break (self-closing)</td>
+        </tr>
+        <tr>
+            <td><code>&lt;hr&gt;</code></td>
+            <td><hr></td>
+            <td>Thematic break/horizontal rule</td>
+        </tr>
+    </table>
+
+    <div class="important">
+        <strong>⚠️ Important:</strong> Use <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> for accessibility. Use <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> only for visual styling without semantic meaning.
+    </div>
+
+    <!-- ===== LINKS & IMAGES ===== -->
+    <h2>4. Links & Images</h2>
+
+    <h3>Links (<code>&lt;a&gt;</code> tag)</h3>
+    <p>
+        <a href="https://www.google.com" target="_blank">External Link (opens in new tab)</a> |
+        <a href="#section1">Internal Link</a> |
+        <a href="mailto:email@example.com">Email Link</a> |
+        <a href="tel:+1234567890">Phone Link</a>
+    </p>
+
+    <div class="note">
+        <h3>Link Attributes:</h3>
+        <ul>
+            <li><code>href</code> - URL or path</li>
+            <li><code>target="_blank"</code> - Opens in new tab</li>
+            <li><code>target="_self"</code> - Opens in same tab (default)</li>
+            <li><code>download</code> - Downloads file instead of opening</li>
+        </ul>
+    </div>
+
+    <h3>Images (<code>&lt;img&gt;</code> tag)</h3>
+    <img src="https://via.placeholder.com/300x150" alt="Sample Image" width="300">
+    
+    <div class="note">
+        <h3>Image Attributes:</h3>
+        <ul>
+            <li><code>src</code> - Image path/URL (required)</li>
+            <li><code>alt</code> - Alternative text (required for accessibility)</li>
+            <li><code>width</code> / <code>height</code> - Dimensions in pixels</li>
+            <li>Common formats: JPEG, PNG, GIF, SVG, WebP</li>
+        </ul>
+    </div>
+
+    <!-- ===== LISTS ===== -->
+    <h2>5. Lists</h2>
+
+    <h3>Ordered List (<code>&lt;ol&gt;</code>)</h3>
+    <ol>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ol>
+
+    <h3>Unordered List (<code>&lt;ul&gt;</code>)</h3>
+    <ul>
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Orange</li>
+    </ul>
+
+    <h3>Description List (<code>&lt;dl&gt;</code>)</h3>
+    <dl>
+        <dt><strong>HTML</strong></dt>
+        <dd>HyperText Markup Language - structure of web pages</dd>
+        <dt><strong>CSS</strong></dt>
+        <dd>Cascading Style Sheets - styling of web pages</dd>
+    </dl>
+
+    <div class="tip">
+        <strong>💡 Tip:</strong> Use <code>list-style-type</code> CSS property to change bullet styles: disc, circle, square, decimal, lower-alpha, upper-roman, none.
+    </div>
+
+    <!-- ===== TABLES ===== -->
+    <h2>6. Tables</h2>
+
+    <table>
+        <thead>
             <tr>
                 <th>Name</th>
-                <th>Age</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>john@email.com</td>
+                <td>Developer</td>
             </tr>
             <tr>
-                <td>John</td>
-                <td>25</td>
+                <td>Jane Smith</td>
+                <td>jane@email.com</td>
+                <td>Designer</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total: 2 employees</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="note">
+        <h3>Table Tags:</h3>
+        <ul>
+            <li><code>&lt;table&gt;</code> - Creates table</li>
+            <li><code>&lt;thead&gt;</code> - Header section</li>
+            <li><code>&lt;tbody&gt;</code> - Body section</li>
+            <li><code>&lt;tfoot&gt;</code> - Footer section</li>
+            <li><code>&lt;tr&gt;</code> - Table row</li>
+            <li><code>&lt;th&gt;</code> - Header cell</li>
+            <li><code>&lt;td&gt;</code> - Data cell</li>
+            <li><code>colspan</code> - Merge columns</li>
+            <li><code>rowspan</code> - Merge rows</li>
+        </ul>
+    </div>
+
+    <!-- ===== FORMS ===== -->
+    <h2>7. Forms & Input Elements</h2>
+
+    <form action="#" method="POST">
+        <h3>Sample Registration Form</h3>
+        
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" minlength="8">
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="1" max="120">
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob">
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+
+        <br><br>
+        <label>Interests:</label>
+        <input type="checkbox" id="coding" name="interests" value="coding">
+        <label for="coding">Coding</label>
+        <input type="checkbox" id="design" name="interests" value="design">
+        <label for="design">Design</label>
+
+        <br><br>
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="">Select country</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="in">India</option>
+        </select>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" placeholder="Your message"></textarea>
+
+        <label for="file">Upload File:</label>
+        <input type="file" id="file" name="file">
+
+        <br>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+    <div class="note">
+        <h3>Input Types:</h3>
+        <p>text, password, email, number, date, time, datetime, color, range, tel, url, search, file, checkbox, radio, submit, reset, button, hidden</p>
+    </div>
+
+    <!-- ===== SEMANTIC HTML ===== -->
+    <h2>8. Semantic HTML5 Elements</h2>
+
+    <header style="background: #3498db; color: white; padding: 20px; border-radius: 8px;">
+        <h3>&lt;header&gt;</h3>
+        <p>Page or section header</p>
+    </header>
+
+    <nav style="background: #2c3e50; color: white; padding: 15px; margin: 10px 0; border-radius: 8px;">
+        <h3>&lt;nav&gt;</h3>
+        <p>Navigation menu</p>
+    </nav>
+
+    <main style="background: #ecf0f1; padding: 20px; margin: 10px 0; border-radius: 8px;">
+        <h3>&lt;main&gt;</h3>
+        <p>Primary content (use only once per page)</p>
+
+        <article style="background: white; padding: 15px; margin: 10px 0; border-radius: 8px;">
+            <h3>&lt;article&gt;</h3>
+            <p>Independent, self-contained content</p>
+        </article>
+
+        <section style="background: white; padding: 15px; margin: 10px 0; border-radius: 8px;">
+            <h3>&lt;section&gt;</h3>
+            <p>Thematic grouping of content</p>
+        </section>
+
+        <aside style="background: #dfe6e9; padding: 15px; margin: 10px 0; border-radius: 8px;">
+            <h3>&lt;aside&gt;</h3>
+            <p>Sidebar or complementary content</p>
+        </aside>
+    </main>
+
+    <footer style="background: #2c3e50; color: white; padding: 20px; margin-top: 10px; border-radius: 8px;">
+        <h3>&lt;footer&gt;</h3>
+        <p>Page or section footer</p>
+    </footer>
+
+    <div class="tip">
+        <strong>💡 Benefits of Semantic HTML:</strong> Better SEO, improved accessibility, cleaner code structure, easier maintenance.
+    </div>
+
+    <!-- ===== CSS SELECTORS ===== -->
+    <h2>9. CSS Selectors</h2>
+
+    <div class="note">
+        <h3>Types of Selectors:</h3>
+        <table>
+            <tr>
+                <th>Selector</th>
+                <th>Example</th>
+                <th>Description</th>
             </tr>
             <tr>
-                <td>Mary</td>
-                <td>22</td>
+                <td>Universal</td>
+                <td><code>* { }</code></td>
+                <td>Selects all elements</td>
+            </tr>
+            <tr>
+                <td>Element</td>
+                <td><code>p { }</code></td>
+                <td>Selects all &lt;p&gt; elements</td>
+            </tr>
+            <tr>
+                <td>Class</td>
+                <td><code>.classname { }</code></td>
+                <td>Selects elements with specific class</td>
+            </tr>
+            <tr>
+                <td>ID</td>
+                <td><code>#idname { }</code></td>
+                <td>Selects element with specific ID</td>
+            </tr>
+            <tr>
+                <td>Attribute</td>
+                <td><code>[type="text"] { }</code></td>
+                <td>Selects by attribute value</td>
+            </tr>
+            <tr>
+                <td>Descendant</td>
+                <td><code>div p { }</code></td>
+                <td>Selects p inside div</td>
+            </tr>
+            <tr>
+                <td>Child</td>
+                <td><code>div > p { }</code></td>
+                <td>Selects direct child p</td>
+            </tr>
+            <tr>
+                <td>Adjacent Sibling</td>
+                <td><code>h1 + p { }</code></td>
+                <td>Selects p directly after h1</td>
+            </tr>
+            <tr>
+                <td>Pseudo-class</td>
+                <td><code>a:hover { }</code></td>
+                <td>Selects element in specific state</td>
+            </tr>
+            <tr>
+                <td>Pseudo-element</td>
+                <td><code>p::first-line { }</code></td>
+                <td>Selects part of an element</td>
             </tr>
         </table>
-        <div class="note">
-            <strong>Table structure:</strong><br>
-            • <code>&lt;table&gt;</code> - Creates a data table<br>
-            • <code>&lt;tr&gt;</code> - Table row<br>
-            • <code>&lt;th&gt;</code> - Header cell (bold, centered)<br>
-            • <code>&lt;td&gt;</code> - Standard data cell<br>
-            • <code>border="1"</code> - Adds visible borders
-        </div>
-    </section>
+    </div>
 
-    <hr>
+    <!-- ===== BOX MODEL ===== -->
+    <h2>10. CSS Box Model</h2>
 
-    <!-- Form -->
-    <section>
-        <h2>Form</h2>
-        <form>
-            <label>Name</label><br>
-            <input type="text" placeholder="Enter name"><br><br>
-            <label>Email</label><br>
-            <input type="email" placeholder="Enter email"><br><br>
-            <label>Password</label><br>
-            <input type="password" placeholder="Enter password"><br><br>
-            <button type="submit">Submit</button>
-        </form>
-        <div class="note">
-            <strong>Form elements:</strong><br>
-            • <code>&lt;form&gt;</code> - Collects user input<br>
-            • <code>&lt;label&gt;</code> - Descriptive text for fields<br>
-            • <code>&lt;input&gt;</code> - Various input types<br>
-            • <code>placeholder</code> - Hint text inside field<br>
-            • <code>&lt;button type="submit"&gt;</code> - Sends form data
-        </div>
-    </section>
+    <div class="box-model-demo">
+        <strong>Content Area</strong><br>
+        300px width
+    </div>
 
-    <hr>
+    <div class="note">
+        <h3>Box Model Components (from inside out):</h3>
+        <ol>
+            <li><strong>Content</strong> - The actual content (text, image, etc.)</li>
+            <li><strong>Padding</strong> - Space between content and border (transparent)</li>
+            <li><strong>Border</strong> - Line around padding and content</li>
+            <li><strong>Margin</strong> - Space outside the border (transparent)</li>
+        </ol>
+        <p><strong>Total Width</strong> = content + padding-left + padding-right + border-left + border-right</p>
+        <p><strong>box-sizing: border-box</strong> makes width include padding and border</p>
+    </div>
 
-    <!-- Box Model -->
-    <section>
-        <div class="box">
-            This is a DIV element.
-        </div>
-        <div class="note">
-            <strong>Box Model:</strong> width:300px + padding:20px (×2) + border:2px (×2) = Total width: 344px
-        </div>
-    </section>
+    <!-- ===== DISPLAY PROPERTY ===== -->
+    <h2>11. CSS Display Property</h2>
 
-    <!-- Span -->
-    <section>
-        <p>My favorite color is <span id="special">Red</span>.</p>
-        <div class="note">
-            <strong>Span:</strong> Inline container for text. Uses <code>id="special"</code> to apply red text color from CSS.
-        </div>
-    </section>
+    <div class="note">
+        <h3>Common Display Values:</h3>
+        <ul>
+            <li><code>display: block</code> - Takes full width, starts new line (div, p, h1-h6)</li>
+            <li><code>display: inline</code> - Takes only needed width, no new line (span, a, img)</li>
+            <li><code>display: inline-block</code> - Like inline but can set width/height</li>
+            <li><code>display: none</code> - Removes element from flow entirely</li>
+            <li><code>display: flex</code> - Creates flex container</li>
+            <li><code>display: grid</code> - Creates grid container</li>
+        </ul>
+    </div>
 
-    <hr>
+    <!-- ===== POSITION PROPERTY ===== -->
+    <h2>12. CSS Position Property</h2>
 
-    <!-- Semantic HTML -->
-    <section>
-        <header>
-            <h2>Header</h2>
-        </header>
-        <div class="note">
-            <strong>Header:</strong> Contains introductory content like logos, headings, or navigation.
-        </div>
+    <div class="note">
+        <h3>Position Values:</h3>
+        <ul>
+            <li><code>position: static</code> - Default, normal flow</li>
+            <li><code>position: relative</code> - Positioned relative to normal position</li>
+            <li><code>position: absolute</code> - Positioned relative to nearest positioned ancestor</li>
+            <li><code>position: fixed</code> - Positioned relative to viewport (stays in place)</li>
+            <li><code>position: sticky</code> - Toggles between relative and fixed based on scroll</li>
+        </ul>
+        <p>Used with: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>, <code>z-index</code></p>
+    </div>
 
-        <nav>
-            Navigation Menu
-        </nav>
-        <div class="note">
-            <strong>Nav:</strong> Contains navigation links for a website.
-        </div>
+    <!-- ===== FLEXBOX ===== -->
+    <h2>13. CSS Flexbox</h2>
 
-        <main>
-            <section>
-                <article>
-                    <h3>Article Title</h3>
-                    <p>Article Content</p>
-                </article>
-            </section>
-            <aside>
-                Sidebar Content
-            </aside>
-        </main>
-        <div class="note">
-            <strong>Semantic structure:</strong><br>
-            • <code>&lt;main&gt;</code> - Primary content (once per page)<br>
-            • <code>&lt;section&gt;</code> - Groups related content<br>
-            • <code>&lt;article&gt;</code> - Independent, reusable content<br>
-            • <code>&lt;aside&gt;</code> - Secondary content (sidebars)
-        </div>
+    <h3>Flex Container Properties:</h3>
+    <div class="flex-demo">
+        <div class="flex-item-demo">Flex Item 1</div>
+        <div class="flex-item-demo">Flex Item 2</div>
+        <div class="flex-item-demo">Flex Item 3</div>
+    </div>
 
-        <footer>
-            Footer Content
-        </footer>
-        <div class="note">
-            <strong>Footer:</strong> Bottom section with copyright, contact info, or related links.
-        </div>
-    </section>
+    <div class="note">
+        <h3>Flexbox Properties:</h3>
+        <p><strong>Container Properties:</strong></p>
+        <ul>
+            <li><code>display: flex</code> - Creates flex container</li>
+            <li><code>flex-direction</code> - row | column | row-reverse | column-reverse</li>
+            <li><code>justify-content</code> - Horizontal alignment (flex-start, center, space-between, space-around)</li>
+            <li><code>align-items</code> - Vertical alignment (stretch, center, flex-start, flex-end)</li>
+            <li><code>flex-wrap</code> - wrap | nowrap | wrap-reverse</li>
+            <li><code>gap</code> - Spacing between items</li>
+        </ul>
+        <p><strong>Item Properties:</strong></p>
+        <ul>
+            <li><code>flex: 1</code> - Grow/shrink/basis shorthand</li>
+            <li><code>align-self</code> - Override alignment for individual item</li>
+            <li><code>order</code> - Change visual order</li>
+        </ul>
+    </div>
 
-    <hr>
+    <!-- ===== CSS GRID ===== -->
+    <h2>14. CSS Grid</h2>
 
-    <!-- Class & ID Examples -->
-    <section>
-        <h2 class="title">Class Selector Example</h2>
-        <div class="note">
-            <strong>Class selector (.title):</strong> Applies green text color. Classes can be reused on multiple elements.
-        </div>
-    </section>
+    <div class="grid-demo">
+        <div class="grid-item-demo">Grid Item A</div>
+        <div class="grid-item-demo">Grid Item B</div>
+        <div class="grid-item-demo">Grid Item C</div>
+    </div>
 
-    <hr>
+    <div class="note">
+        <h3>Grid Properties:</h3>
+        <p><strong>Container Properties:</strong></p>
+        <ul>
+            <li><code>display: grid</code> - Creates grid container</li>
+            <li><code>grid-template-columns</code> - Define column sizes (1fr, 200px, auto, repeat(3, 1fr))</li>
+            <li><code>grid-template-rows</code> - Define row sizes</li>
+            <li><code>gap</code> - Row and column gap</li>
+            <li><code>grid-template-areas</code> - Named grid areas</li>
+        </ul>
+        <p><strong>Item Properties:</strong></p>
+        <ul>
+            <li><code>grid-column</code> - Span columns (1 / 3)</li>
+            <li><code>grid-row</code> - Span rows</li>
+        </ul>
+    </div>
 
-    <!-- Flexbox -->
-    <section>
-        <h2>Flexbox Example</h2>
-        <div class="flex-container">
-            <div class="flex-item">1</div>
-            <div class="flex-item">2</div>
-            <div class="flex-item">3</div>
-        </div>
-        <div class="note">
-            <strong>Flexbox:</strong> One-dimensional layout system. Arranges items in a row with gap spacing. On mobile (&lt;768px), stacks vertically using media query.
-        </div>
-    </section>
+    <!-- ===== RESPONSIVE DESIGN ===== -->
+    <h2>15. Responsive Design</h2>
 
-    <hr>
+    <div class="note">
+        <h3>Media Queries:</h3>
+        <pre><code>/* Mobile First Approach */
+/* Base styles for mobile */
 
-    <!-- Grid -->
-    <section>
-        <h2>Grid Example</h2>
-        <div class="grid-container">
-            <div class="grid-item">A</div>
-            <div class="grid-item">B</div>
-            <div class="grid-item">C</div>
-        </div>
-        <div class="note">
-            <strong>CSS Grid:</strong> Two-dimensional layout system. Creates three equal columns (1fr each). On mobile (&lt;768px), switches to single column layout.
-        </div>
-    </section>
+/* Tablet */
+@media (min-width: 768px) {
+    /* Styles for tablets and larger */
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    /* Styles for desktop */
+}
+
+/* Print */
+@media print {
+    /* Styles for printing */
+}</code></pre>
+
+        <h3>Responsive Units:</h3>
+        <ul>
+            <li><code>%</code> - Percentage of parent</li>
+            <li><code>vw</code> - Viewport width (1vw = 1% of viewport width)</li>
+            <li><code>vh</code> - Viewport height</li>
+            <li><code>rem</code> - Relative to root font size</li>
+            <li><code>em</code> - Relative to parent font size</li>
+        </ul>
+    </div>
+
+    <!-- ===== COLORS & BACKGROUNDS ===== -->
+    <h2>16. Colors & Backgrounds</h2>
+
+    <div class="note">
+        <h3>Color Formats:</h3>
+        <ul>
+            <li><code>color: red;</code> - Named colors</li>
+            <li><code>color: #FF0000;</code> - Hexadecimal</li>
+            <li><code>color: rgb(255, 0, 0);</code> - RGB</li>
+            <li><code>color: rgba(255, 0, 0, 0.5);</code> - RGB with opacity</li>
+            <li><code>color: hsl(0, 100%, 50%);</code> - HSL</li>
+        </ul>
+
+        <h3>Background Properties:</h3>
+        <ul>
+            <li><code>background-color</code></li>
+            <li><code>background-image: url()</code></li>
+            <li><code>background-size: cover | contain</code></li>
+            <li><code>background-position</code></li>
+            <li><code>background-repeat</code></li>
+            <li><code>background-attachment: fixed</code></li>
+            <li><code>background: linear-gradient()</code></li>
+        </ul>
+    </div>
+
+    <!-- ===== TYPOGRAPHY ===== -->
+    <h2>17. Typography</h2>
+
+    <div class="note">
+        <h3>Font Properties:</h3>
+        <ul>
+            <li><code>font-family</code> - 'Arial', sans-serif</li>
+            <li><code>font-size</code> - 16px, 1.2em, 1rem</li>
+            <li><code>font-weight</code> - normal, bold, 100-900</li>
+            <li><code>font-style</code> - normal, italic</li>
+            <li><code>line-height</code> - 1.5, 150%</li>
+            <li><code>text-align</code> - left, center, right, justify</li>
+            <li><code>text-decoration</code> - underline, line-through, none</li>
+            <li><code>text-transform</code> - uppercase, lowercase, capitalize</li>
+            <li><code>letter-spacing</code></li>
+            <li><code>word-spacing</code></li>
+        </ul>
+    </div>
+
+    <!-- ===== TRANSITIONS & ANIMATIONS ===== -->
+    <h2>18. Transitions & Animations</h2>
+
+    <div class="note">
+        <h3>Transitions:</h3>
+        <pre><code>.element {
+    transition: property duration timing-function delay;
+    /* Example: */
+    transition: all 0.3s ease-in-out;
+}
+
+.element:hover {
+    transform: scale(1.1);
+    background-color: blue;
+}</code></pre>
+
+        <h3>Animations:</h3>
+        <pre><code>@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.element {
+    animation: slideIn 1s ease-out;
+}</code></pre>
+    </div>
+
+    <!-- ===== TRANSFORMS ===== -->
+    <h2>19. CSS Transforms</h2>
+
+    <div class="note">
+        <h3>Transform Functions:</h3>
+        <ul>
+            <li><code>translate(x, y)</code> - Move element</li>
+            <li><code>rotate(deg)</code> - Rotate element</li>
+            <li><code>scale(x, y)</code> - Scale element</li>
+            <li><code>skew(x-deg, y-deg)</code> - Skew element</li>
+            <li><code>matrix()</code> - Combine transforms</li>
+        </ul>
+        <p>Can be combined: <code>transform: rotate(45deg) scale(1.5)</code></p>
+    </div>
+
+    <!-- ===== CSS SPECIFICITY ===== -->
+    <h2>20. CSS Specificity</h2>
+
+    <div class="important">
+        <h3>Specificity Hierarchy (lowest to highest):</h3>
+        <ol>
+            <li><strong>Universal selector (*)</strong> - 0,0,0,0</li>
+            <li><strong>Element selectors (p, div)</strong> - 0,0,0,1</li>
+            <li><strong>Class selectors (.class)</strong> - 0,0,1,0</li>
+            <li><strong>ID selectors (#id)</strong> - 0,1,0,0</li>
+            <li><strong>Inline styles</strong> - 1,0,0,0</li>
+            <li><strong>!important</strong> - Overrides everything</li>
+        </ol>
+        <p><strong>Best Practice:</strong> Use classes for styling, avoid !important and inline styles.</p>
+    </div>
+
+    <!-- ===== PSEUDO-CLASSES & ELEMENTS ===== -->
+    <h2>21. Pseudo-classes & Pseudo-elements</h2>
+
+    <div class="note">
+        <h3>Common Pseudo-classes:</h3>
+        <ul>
+            <li><code>:hover</code> - Mouse over element</li>
+            <li><code>:active</code> - Element being clicked</li>
+            <li><code>:focus</code> - Element has focus</li>
+            <li><code>:first-child</code> - First child element</li>
+            <li><code>:last-child</code> - Last child element</li>
+            <li><code>:nth-child(n)</code> - Specific child</li>
+            <li><code>:not(selector)</code> - Exclude selector</li>
+        </ul>
+
+        <h3>Common Pseudo-elements:</h3>
+        <ul>
+            <li><code>::before</code> - Insert content before</li>
+            <li><code>::after</code> - Insert content after</li>
+            <li><code>::first-letter</code> - First letter styling</li>
+            <li><code>::first-line</code> - First line styling</li>
+            <li><code>::selection</code> - Selected text styling</li>
+        </ul>
+    </div>
+
+    <!-- ===== CSS CUSTOM PROPERTIES ===== -->
+    <h2>22. CSS Custom Properties (Variables)</h2>
+
+    <div class="note">
+        <pre><code>:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --font-size: 16px;
+    --spacing: 20px;
+}
+
+.element {
+    color: var(--primary-color);
+    font-size: var(--font-size);
+    padding: var(--spacing);
+}</code></pre>
+        <p><strong>Benefits:</strong> Reusable values, easy theme changes, maintainable code.</p>
+    </div>
+
+    <!-- ===== CSS SHORTHAND PROPERTIES ===== -->
+    <h2>23. CSS Shorthand Properties</h2>
+
+    <div class="note">
+        <h3>Common Shorthands:</h3>
+        <ul>
+            <li><strong>Margin/Padding:</strong> <code>margin: top right bottom left;</code></li>
+            <li><strong>Border:</strong> <code>border: width style color;</code></li>
+            <li><strong>Background:</strong> <code>background: color image repeat position;</code></li>
+            <li><strong>Font:</strong> <code>font: style weight size/line-height family;</code></li>
+            <li><strong>Flex:</strong> <code>flex: grow shrink basis;</code></li>
+            <li><strong>Transition:</strong> <code>transition: property duration timing delay;</code></li>
+        </ul>
+    </div>
+
+    <!-- ===== BROWSER DEV TOOLS ===== -->
+    <h2>24. Browser Developer Tools Tips</h2>
+
+    <div class="tip">
+        <h3>Essential Shortcuts:</h3>
+        <ul>
+            <li><strong>F12</strong> or <strong>Ctrl+Shift+I</strong> - Open DevTools</li>
+            <li><strong>Ctrl+Shift+C</strong> - Element inspector</li>
+            <li><strong>Ctrl+Shift+M</strong> - Toggle device toolbar (responsive mode)</li>
+            <li>Elements tab - Inspect and modify HTML/CSS live</li>
+            <li>Console tab - View errors and run JavaScript</li>
+            <li>Network tab - Monitor file loading</li>
+        </ul>
+    </div>
+
+    <!-- ===== BEST PRACTICES ===== -->
+    <h2>25. CSS Best Practices</h2>
+
+    <div class="important">
+        <h3>Do's:</h3>
+        <ul>
+            <li>✅ Use semantic HTML elements</li>
+            <li>✅ Use classes instead of IDs for styling</li>
+            <li>✅ Write mobile-first CSS</li>
+            <li>✅ Use meaningful class names (BEM methodology)</li>
+            <li>✅ Organize CSS with comments</li>
+            <li>✅ Use shorthand properties when possible</li>
+            <li>✅ Validate HTML and CSS</li>
+            <li>✅ Test across browsers</li>
+        </ul>
+
+        <h3>Don'ts:</h3>
+        <ul>
+            <li>❌ Don't use inline styles</li>
+            <li>❌ Don't use !important unnecessarily</li>
+            <li>❌ Don't use too many nested selectors</li>
+            <li>❌ Don't forget about accessibility</li>
+            <li>❌ Don't ignore performance</li>
+            <li>❌ Don't use absolute units for everything</li>
+        </ul>
+    </div>
+
+    <!-- ===== QUICK REFERENCE ===== -->
+    <h2>26. Quick Reference - Common CSS Properties</h2>
+
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Properties</th>
+        </tr>
+        <tr>
+            <td>Dimension</td>
+            <td>width, height, max-width, min-height</td>
+        </tr>
+        <tr>
+            <td>Spacing</td>
+            <td>margin, padding</td>
+        </tr>
+        <tr>
+            <td>Border</td>
+            <td>border, border-radius, outline</td>
+        </tr>
+        <tr>
+            <td>Background</td>
+            <td>background-color, background-image, background-size</td>
+        </tr>
+        <tr>
+            <td>Text</td>
+            <td>color, font-family, font-size, text-align, line-height</td>
+        </tr>
+        <tr>
+            <td>Layout</td>
+            <td>display, position, float, clear</td>
+        </tr>
+        <tr>
+            <td>Flexbox</td>
+            <td>flex-direction, justify-content, align-items, flex-wrap</td>
+        </tr>
+        <tr>
+            <td>Grid</td>
+            <td>grid-template-columns, grid-template-rows, gap</td>
+        </tr>
+        <tr>
+            <td>Visual Effects</td>
+            <td>opacity, box-shadow, filter, visibility</td>
+        </tr>
+        <tr>
+            <td>Transforms</td>
+            <td>transform, transform-origin</td>
+        </tr>
+        <tr>
+            <td>Animation</td>
+            <td>transition, animation, @keyframes</td>
+        </tr>
+        <tr>
+            <td>Other</td>
+            <td>cursor, overflow, z-index, object-fit</td>
+        </tr>
+    </table>
+
+    <br><br>
+    <footer style="text-align: center; padding: 30px; background: #2c3e50; color: white; border-radius: 8px;">
+        <h3>📚 Complete HTML & CSS Notes</h3>
+        <p>Keep this guide handy while coding. Practice makes perfect!</p>
+        <p>Remember: HTML is for structure, CSS is for presentation.</p>
+    </footer>
 
 </body>
 </html>
