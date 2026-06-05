@@ -2,43 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML & CSS Notes</title>
-
     <style>
-
         /* Universal Selector */
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         /* Element Selector */
-        body{
+        body {
             font-family: Arial, sans-serif;
             padding: 20px;
             line-height: 1.6;
         }
 
-        h1{
+        h1 {
             color: navy;
         }
 
         /* Class Selector */
-        .title{
+        .title {
             color: green;
         }
 
         /* ID Selector */
-        #special{
+        #special {
             color: red;
         }
 
         /* Box Model */
-        .box{
+        .box {
             width: 300px;
             padding: 20px;
             margin: 20px 0;
@@ -46,263 +42,332 @@
         }
 
         /* Flexbox */
-        .flex-container{
+        .flex-container {
             display: flex;
             gap: 10px;
             margin-top: 20px;
         }
 
-        .flex-item{
+        .flex-item {
             background: lightblue;
             padding: 20px;
         }
 
         /* Grid */
-        .grid-container{
+        .grid-container {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 10px;
             margin-top: 20px;
         }
 
-        .grid-item{
+        .grid-item {
             background: lightgreen;
             padding: 20px;
         }
 
         /* Hover Effect */
-        button{
+        button {
             padding: 10px;
             transition: 0.3s;
         }
 
-        button:hover{
+        button:hover {
             background: orange;
             cursor: pointer;
         }
 
         /* Responsive Design */
-        @media(max-width:768px){
-
-            .flex-container{
+        @media (max-width: 768px) {
+            .flex-container {
                 flex-direction: column;
             }
-
-            .grid-container{
+            .grid-container {
                 grid-template-columns: 1fr;
             }
         }
 
+        /* Notes styling */
+        .note {
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .code-explanation {
+            color: #666;
+            font-style: italic;
+        }
+
+        hr {
+            margin: 30px 0;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
     </style>
 </head>
 <body>
-
     <!-- Headings -->
-    <h1>HTML & CSS Complete Notes</h1>
-
-    <h2>Heading 2</h2>
-    <h3>Heading 3</h3>
-    <h4>Heading 4</h4>
-    <h5>Heading 5</h5>
-    <h6>Heading 6</h6>
+    <section>
+        <h1>HTML & CSS Complete Notes</h1>
+        <div class="note">
+            <strong>h1 explained:</strong> h1 is the most important heading tag. It should appear only once per page for SEO and accessibility. Search engines use h1 to understand page content.
+        </div>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+        <div class="note">
+            <strong>Heading hierarchy:</strong> h2 through h6 are subheadings. h2 is for major sections, h3 for subsections, and so on. They create a document hierarchy and help organize content structure.
+        </div>
+    </section>
 
     <hr>
 
     <!-- Paragraph -->
-    <p>This is a paragraph.</p>
+    <section>
+        <p>This is a paragraph.</p>
+        <div class="note">
+            <strong>p tag:</strong> Defines a paragraph. Browsers automatically add margin before and after paragraphs to separate blocks of text.
+        </div>
+    </section>
 
     <hr>
 
     <!-- Text Formatting -->
-    <p>
-        <b>Bold</b><br>
-        <strong>Strong</strong><br>
-        <i>Italic</i><br>
-        <em>Emphasis</em><br>
-        <u>Underline</u><br>
-        <mark>Highlight</mark><br>
-        <small>Small Text</small><br>
-        <del>Deleted</del><br>
-        <ins>Inserted</ins>
-    </p>
+    <section>
+        <p>
+            <b>Bold</b><br>
+            <strong>Strong</strong><br>
+            <i>Italic</i><br>
+            <em>Emphasis</em><br>
+            <u>Underline</u><br>
+            <mark>Highlight</mark><br>
+            <small>Small Text</small><br>
+            <del>Deleted</del><br>
+            <ins>Inserted</ins>
+        </p>
+        <div class="note">
+            <strong>Text formatting tags:</strong><br>
+            • <code>&lt;b&gt;</code> - Bold without semantic importance<br>
+            • <code>&lt;strong&gt;</code> - Bold with semantic importance<br>
+            • <code>&lt;i&gt;</code> - Italic without emphasis<br>
+            • <code>&lt;em&gt;</code> - Italic with emphasis<br>
+            • <code>&lt;u&gt;</code> - Underlined text<br>
+            • <code>&lt;mark&gt;</code> - Highlighted text<br>
+            • <code>&lt;small&gt;</code> - Smaller text<br>
+            • <code>&lt;del&gt;</code> - Deleted text (strikethrough)<br>
+            • <code>&lt;ins&gt;</code> - Inserted text (underlined)
+        </div>
+    </section>
 
     <hr>
 
     <!-- Links -->
-    <a href="https://google.com"
-       target="_blank">
-       Visit Google
-    </a>
+    <section>
+        <a href="https://google.com" target="_blank">Visit Google</a>
+        <div class="note">
+            <strong>Anchor tag:</strong> <code>&lt;a&gt;</code> creates hyperlinks. <code>href</code> specifies the destination URL. <code>target="_blank"</code> opens the link in a new browser tab.
+        </div>
+    </section>
 
     <hr>
 
     <!-- Image -->
-    <img src="image.jpg"
-         alt="Example Image"
-         width="200">
+    <section>
+        <img src="image.jpg" alt="Example Image" width="200">
+        <div class="note">
+            <strong>Image tag:</strong> <code>&lt;img&gt;</code> displays images. <code>src</code> specifies the image file path. <code>alt</code> provides alternative text for accessibility. <code>width</code> sets the image width.
+        </div>
+    </section>
 
     <hr>
 
-    <!-- Ordered List -->
-    <h2>Ordered List</h2>
+    <!-- Lists -->
+    <section>
+        <h2>Ordered List</h2>
+        <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ol>
+        <div class="note">
+            <strong>Ordered list:</strong> <code>&lt;ol&gt;</code> creates a numbered list. <code>&lt;li&gt;</code> tags define each list item.
+        </div>
 
-    <ol>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-    </ol>
-
-    <!-- Unordered List -->
-    <h2>Unordered List</h2>
-
-    <ul>
-        <li>Apple</li>
-        <li>Mango</li>
-        <li>Orange</li>
-    </ul>
+        <h2>Unordered List</h2>
+        <ul>
+            <li>Apple</li>
+            <li>Mango</li>
+            <li>Orange</li>
+        </ul>
+        <div class="note">
+            <strong>Unordered list:</strong> <code>&lt;ul&gt;</code> creates a bulleted list. <code>&lt;li&gt;</code> tags define each item.
+        </div>
+    </section>
 
     <hr>
 
     <!-- Table -->
-    <h2>Table</h2>
-
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Age</th>
-        </tr>
-
-        <tr>
-            <td>John</td>
-            <td>25</td>
-        </tr>
-
-        <tr>
-            <td>Mary</td>
-            <td>22</td>
-        </tr>
-    </table>
+    <section>
+        <h2>Table</h2>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>Mary</td>
+                <td>22</td>
+            </tr>
+        </table>
+        <div class="note">
+            <strong>Table structure:</strong><br>
+            • <code>&lt;table&gt;</code> - Creates a data table<br>
+            • <code>&lt;tr&gt;</code> - Table row<br>
+            • <code>&lt;th&gt;</code> - Header cell (bold, centered)<br>
+            • <code>&lt;td&gt;</code> - Standard data cell<br>
+            • <code>border="1"</code> - Adds visible borders
+        </div>
+    </section>
 
     <hr>
 
     <!-- Form -->
-    <h2>Form</h2>
-
-    <form>
-
-        <label>Name</label><br>
-
-        <input type="text"
-               placeholder="Enter name">
-
-        <br><br>
-
-        <label>Email</label><br>
-
-        <input type="email"
-               placeholder="Enter email">
-
-        <br><br>
-
-        <label>Password</label><br>
-
-        <input type="password"
-               placeholder="Enter password">
-
-        <br><br>
-
-        <button type="submit">
-            Submit
-        </button>
-
-    </form>
+    <section>
+        <h2>Form</h2>
+        <form>
+            <label>Name</label><br>
+            <input type="text" placeholder="Enter name"><br><br>
+            <label>Email</label><br>
+            <input type="email" placeholder="Enter email"><br><br>
+            <label>Password</label><br>
+            <input type="password" placeholder="Enter password"><br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="note">
+            <strong>Form elements:</strong><br>
+            • <code>&lt;form&gt;</code> - Collects user input<br>
+            • <code>&lt;label&gt;</code> - Descriptive text for fields<br>
+            • <code>&lt;input&gt;</code> - Various input types<br>
+            • <code>placeholder</code> - Hint text inside field<br>
+            • <code>&lt;button type="submit"&gt;</code> - Sends form data
+        </div>
+    </section>
 
     <hr>
 
-    <!-- Div -->
-    <div class="box">
-        This is a DIV element.
-    </div>
+    <!-- Box Model -->
+    <section>
+        <div class="box">
+            This is a DIV element.
+        </div>
+        <div class="note">
+            <strong>Box Model:</strong> width:300px + padding:20px (×2) + border:2px (×2) = Total width: 344px
+        </div>
+    </section>
 
     <!-- Span -->
-    <p>
-        My favorite color is
-        <span id="special">Red</span>.
-    </p>
+    <section>
+        <p>My favorite color is <span id="special">Red</span>.</p>
+        <div class="note">
+            <strong>Span:</strong> Inline container for text. Uses <code>id="special"</code> to apply red text color from CSS.
+        </div>
+    </section>
 
     <hr>
 
     <!-- Semantic HTML -->
-    <header>
-        <h2>Header</h2>
-    </header>
+    <section>
+        <header>
+            <h2>Header</h2>
+        </header>
+        <div class="note">
+            <strong>Header:</strong> Contains introductory content like logos, headings, or navigation.
+        </div>
 
-    <nav>
-        Navigation Menu
-    </nav>
+        <nav>
+            Navigation Menu
+        </nav>
+        <div class="note">
+            <strong>Nav:</strong> Contains navigation links for a website.
+        </div>
 
-    <main>
+        <main>
+            <section>
+                <article>
+                    <h3>Article Title</h3>
+                    <p>Article Content</p>
+                </article>
+            </section>
+            <aside>
+                Sidebar Content
+            </aside>
+        </main>
+        <div class="note">
+            <strong>Semantic structure:</strong><br>
+            • <code>&lt;main&gt;</code> - Primary content (once per page)<br>
+            • <code>&lt;section&gt;</code> - Groups related content<br>
+            • <code>&lt;article&gt;</code> - Independent, reusable content<br>
+            • <code>&lt;aside&gt;</code> - Secondary content (sidebars)
+        </div>
 
-        <section>
-
-            <article>
-
-                <h3>Article Title</h3>
-
-                <p>
-                    Article Content
-                </p>
-
-            </article>
-
-        </section>
-
-        <aside>
-            Sidebar Content
-        </aside>
-
-    </main>
-
-    <footer>
-        Footer Content
-    </footer>
+        <footer>
+            Footer Content
+        </footer>
+        <div class="note">
+            <strong>Footer:</strong> Bottom section with copyright, contact info, or related links.
+        </div>
+    </section>
 
     <hr>
 
-    <!-- Class Example -->
-    <h2 class="title">
-        Class Selector Example
-    </h2>
+    <!-- Class & ID Examples -->
+    <section>
+        <h2 class="title">Class Selector Example</h2>
+        <div class="note">
+            <strong>Class selector (.title):</strong> Applies green text color. Classes can be reused on multiple elements.
+        </div>
+    </section>
 
     <hr>
 
     <!-- Flexbox -->
-    <h2>Flexbox Example</h2>
-
-    <div class="flex-container">
-
-        <div class="flex-item">1</div>
-
-        <div class="flex-item">2</div>
-
-        <div class="flex-item">3</div>
-
-    </div>
+    <section>
+        <h2>Flexbox Example</h2>
+        <div class="flex-container">
+            <div class="flex-item">1</div>
+            <div class="flex-item">2</div>
+            <div class="flex-item">3</div>
+        </div>
+        <div class="note">
+            <strong>Flexbox:</strong> One-dimensional layout system. Arranges items in a row with gap spacing. On mobile (&lt;768px), stacks vertically using media query.
+        </div>
+    </section>
 
     <hr>
 
     <!-- Grid -->
-    <h2>Grid Example</h2>
-
-    <div class="grid-container">
-
-        <div class="grid-item">A</div>
-
-        <div class="grid-item">B</div>
-
-        <div class="grid-item">C</div>
-
-    </div>
+    <section>
+        <h2>Grid Example</h2>
+        <div class="grid-container">
+            <div class="grid-item">A</div>
+            <div class="grid-item">B</div>
+            <div class="grid-item">C</div>
+        </div>
+        <div class="note">
+            <strong>CSS Grid:</strong> Two-dimensional layout system. Creates three equal columns (1fr each). On mobile (&lt;768px), switches to single column layout.
+        </div>
+    </section>
 
 </body>
 </html>
