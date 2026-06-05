@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Specificity — The Chain of Command</title>
+  <style>
+    /* --------------------------------------------- */
+    /*  GLOBAL RESET & BASE                           */
+    /* --------------------------------------------- */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      padding: 30px;
+      line-height: 1.6;
+    }
+
+    h2 {
+      color: #ccc;
+      border-bottom: 1px solid #333;
+      margin-top: 40px;
+    }
+
+    /* --------------------------------------------- */
+    /*  1. TWO RULES, SAME SPECIFICITY — LAST WINS    */
+    /* --------------------------------------------- */
+    .demo1-title {
+      color: red;
+    }
+    .demo1-title {
+      color: green; /* THIS WINS because it comes last */
+    }
+
+    /* --------------------------------------------- */
+    /*  2. TWO CLASSES ON ONE TAG — ORDER IN CSS WINS */
+    /* --------------------------------------------- */
+    .demo2-border {
+      border: 2px solid gold;
+      color: crimson;
+    }
+    .demo2-text {
+      color: navy; /* THIS WINS for color, but border from .demo2-border remains */
+    }
+
+    /* --------------------------------------------- */
+    /*  3. CHAINED CLASSES — MORE SPECIFIC            */
+    /* --------------------------------------------- */
+    .demo3-box.chained {
+      color: orange;
+      font-weight: bold;
+    }
+    .demo3-box {
+      color: purple; /* The chained rule wins because it has two classes */
+    }
+
+    /* --------------------------------------------- */
+    /*  4. CLASS vs TAG — CLASS ALWAYS WINS           */
+    /* --------------------------------------------- */
+    .demo4-override {
+      color: fuchsia;
+    }
+    h4 {
+      color: lime; /* This comes last, but the CLASS still wins */
+    }
+
+    /* --------------------------------------------- */
+    /*  5. TAG + CLASS vs CHAINED CLASSES             */
+    /* --------------------------------------------- */
+    h5.demo5-mixed {
+      color: dodgerblue; /* One tag + one class = specificity 11 */
+    }
+    .demo5-mixed.chained-demo5 {
+      color: tomato; /* Two classes = specificity 20 — THIS WINS */
+    }
+
+    /* --------------------------------------------- */
+    /*  6. ID WRECKING BALL vs CHAINED CLASSES        */
+    /* --------------------------------------------- */
+    #demo6-id {
+      color: red; /* ID = specificity 100 */
+    }
+    h6.demo6-class.chained-again.more-chains {
+      /*
+       * One tag + three classes = specificity 31
+       * ID still wins. The ID is the owner on site.
+       */
+      color: green;
+    }
+
+    /* --------------------------------------------- */
+    /*  7. !IMPORTANT — THE WRECKING BALL'S WRECKING BALL */
+    /* --------------------------------------------- */
+    #demo7-id {
+      color: red;
+      border: 3px solid red;
+    }
+    .demo7-class {
+      /*
+       * !important wins the COLOR battle,
+       * but the BORDER from the ID selector still applies
+       * because no !important overrides it.
+       */
+      color: green !important;
+      border: 3px solid green;
+    }
+
+    /* --------------------------------------------- */
+    /*  VISUAL HELPERS                                */
+    /* --------------------------------------------- */
+    .demo-box {
+      background: #16213e;
+      border: 1px solid #0f3460;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 6px;
+    }
+    code {
+      background: #0f3460;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    .result-note {
+      font-size: 0.85em;
+      color: #aaa;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔨 CSS Specificity: The Chain of Command</h1>
+  <p>Open your browser's DevTools and inspect each element to see which rules are applied and which are crossed out.</p>
+
+  <!-- DEMO 1: Last of equals wins -->
+  <h2>1. Same Specificity — Last Rule Wins</h2>
+  <div class="demo-box">
+    <h3 class="demo1-title">This title should be GREEN.</h3>
+    <p class="result-note">Two identical <code>.demo1-title</code> selectors. The second one sets <code>color: green</code> and comes last, so it wins.</p>
+  </div>
+
+  <!-- DEMO 2: Multiple classes, no conflict resolution -->
+  <h2>2. Two Classes on One Tag — Property-by-Property</h2>
+  <div class="demo-box">
+    <h3 class="demo2-border demo2-text">This has a GOLD border and NAVY text.</h3>
+    <p class="result-note">
+      <code>.demo2-border</code> gives <code>border: gold</code> and <code>color: crimson</code>.<br>
+      <code>.demo2-text</code> overrides only <code>color</code> to <code>navy</code>.<br>
+      The border from <code>.demo2-border</code> survives because there's no conflict.
+    </p>
+  </div>
+
+  <!-- DEMO 3: Chained classes -->
+  <h2>3. Chained Classes (.class1.class2) — More Specific</h2>
+  <div class="demo-box">
+    <h3 class="demo3-box chained">This should be ORANGE and BOLD.</h3>
+    <p class="result-note">
+      <code>.demo3-box.chained</code> (two classes, specificity 20) beats <code>.demo3-box</code> (one class, specificity 10).
+    </p>
+  </div>
+
+  <!-- DEMO 4: Class vs Tag -->
+  <h2>4. Class Selector vs Tag Selector</h2>
+  <div class="demo-box">
+    <h4 class="demo4-override">This should be FUCHSIA, not lime.</h4>
+    <p class="result-note">
+      The <code>h4</code> tag selector comes LAST in the CSS, but the CLASS <code>.demo4-override</code> has higher specificity (10 vs 1).
+    </p>
+  </div>
+
+  <!-- DEMO 5: Tag+Class vs Chained Classes -->
+  <h2>5. Tag + Class vs Two Chained Classes</h2>
+  <div class="demo-box">
+    <h5 class="demo5-mixed chained-demo5">This should be TOMATO, not dodgerblue.</h5>
+    <p class="result-note">
+      <code>h5.demo5-mixed</code> = specificity 11 (tag 1 + class 10).<br>
+      <code>.demo5-mixed.chained-demo5</code> = specificity 20 (two classes).<br>
+      The chained classes win.
+    </p>
+  </div>
+
+  <!-- DEMO 6: ID vs Everything -->
+  <h2>6. ID Selector — The Wrecking Ball</h2>
+  <div class="demo-box">
+    <h6 id="demo6-id" class="demo6-class chained-again more-chains">This should be RED, despite three classes.</h6>
+    <p class="result-note">
+      <code>#demo6-id</code> = specificity 100.<br>
+      <code>h6.demo6-class.chained-again.more-chains</code> = specificity 31.<br>
+      The ID wins. Always.
+    </p>
+  </div>
+
+  <!-- DEMO 7: !important — The Nuclear Option -->
+  <h2>7. !important — Breaking the Cascade</h2>
+  <div class="demo-box">
+    <h3 id="demo7-id" class="demo7-class">GREEN text, RED border.</h3>
+    <p class="result-note">
+      <code>#demo7-id</code> wants <code>color: red</code> and <code>border: red</code>.<br>
+      <code>.demo7-class</code> uses <code>color: green !important</code>, so it steals the color.<br>
+      But the border from the ID still applies because <code>.demo7-class</code> doesn't use <code>!important</code> on its border.<br>
+      <strong>This is why !important is a nightmare.</strong>
+    </p>
+  </div>
+
+  <footer style="margin-top: 40px; color: #555; font-size: 0.8em;">
+    <p>💡 Pro tip: Stick to classes. Avoid IDs for styling. Never use <code>!important</code> unless you're debugging or overriding third-party code you can't control.</p>
+  </footer>
+
+</body>
+</html>
