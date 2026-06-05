@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Basics — Blueprint Experiment</title>
+  <style>
+    /* --------------------------------------------- */
+    /*  GLOBAL STYLES — the "default" lumber look     */
+    /* --------------------------------------------- */
+    body {
+      background-color: #f4f4f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 30px;
+    }
+
+    /* --------------------------------------------- */
+    /*  PARENT & INHERITANCE DEMO                     */
+    /* --------------------------------------------- */
+    .cabin {
+      /* This color will cascade down to children unless they override it */
+      color: darkslateblue;
+      border: 2px dashed darkslateblue;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #e8e8ff;
+    }
+
+    /* --------------------------------------------- */
+    /*  BASIC ELEMENT SELECTOR — applies to ALL <h1>  */
+    /* --------------------------------------------- */
+    h1 {
+      font-size: 36px;
+      text-transform: uppercase;
+      text-decoration: underline;
+      margin-top: 0;
+    }
+
+    /* --------------------------------------------- */
+    /*  SPECIFICITY SHOWDOWN                         */
+    /* --------------------------------------------- */
+    /* Rule A: element selector — lowest priority     */
+    p {
+      color: darkgreen;
+      font-size: 18px;
+    }
+
+    /* Rule B: class selector — higher priority       */
+    .highlight {
+      color: white;
+      background-color: crimson;
+      padding: 8px 14px;
+      border-radius: 4px;
+    }
+
+    /* Rule C: ID selector — highest priority         */
+    #special-note {
+      color: gold;
+      background-color: #222;
+      border-left: 6px solid gold;
+      padding: 12px 16px;
+      font-weight: bold;
+    }
+
+    /* --------------------------------------------- */
+    /*  MULTI-VALUE PROPERTIES & BORDERS              */
+    /* --------------------------------------------- */
+    .framed {
+      /* border shortcut: width style color */
+      border: 4px double limegreen;
+      padding: 10px;
+      margin: 15px 0;
+      /* Font properties */
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: normal; /* Overrides bold on <strong> inside? Let's see! */
+    }
+
+    /* --------------------------------------------- */
+    /*  TEXT vs FONT — a subtle difference            */
+    /* --------------------------------------------- */
+    .text-demo {
+      font-size: 20px;
+      /* text-transform: capitalize; */ /* Try uncommenting! */
+      text-decoration: line-through wavy red;
+      /* The above combines line style, decoration style, and color */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PARENT & INHERITANCE: .cabin wraps everything -->
+  <div class="cabin">
+    
+    <h1>My CSS Blueprint</h1>
+    
+    <!-- This paragraph inherits color from .cabin initially,
+         but the element selector p gives it darkgreen -->
+    <p>
+      This paragraph is inside the cabin. It has <strong>bold text</strong> 
+      and a <span>generic span</span>. Notice the color comes from the <code>p</code> selector, 
+      not the parent <code>.cabin</code>, because the <code>p</code> rule is more direct.
+    </p>
+
+    <!-- CLASS SELECTOR overrides element selector -->
+    <p class="highlight">
+      This paragraph has class="highlight". The crimson background and white text 
+      override the default p styles because a class is more specific than an element.
+    </p>
+
+    <!-- ID SELECTOR overrides everything -->
+    <p id="special-note">
+      This paragraph has id="special-note". The gold-on-dark scheme overrides even the 
+      .highlight class because an ID has the highest specificity. You should only use 
+      one ID per page.
+    </p>
+
+    <!-- A div to show multi-value border and font-weight -->
+    <div class="framed">
+      <strong>Framed Div:</strong> This div has a <code>4px double limegreen</code> border.
+      Even the &lt;strong&gt; text inside might not be bold if we set 
+      <code>font-weight: normal;</code> on the parent! (Spoiler: it still is, because 
+      browsers give &lt;strong&gt; its own bold rule. Try adding <code>strong { font-weight: normal; }</code> 
+      to override it.)
+    </div>
+
+    <!-- Text-decoration demo -->
+    <p class="text-demo">
+      This text uses a wavy red line-through. It's a fun way to mark things as "done" or 
+      just visually noisy. Change <code>text-transform</code> in the CSS to see the difference.
+    </p>
+
+  </div> <!-- end .cabin -->
+
+  <!-- An element OUTSIDE .cabin to show inheritance boundaries -->
+  <footer style="color: gray; font-size: 14px; margin-top: 20px;">
+    <p>I'm a footer paragraph outside the cabin div. I only have inline styles and browser defaults. 
+    I do NOT inherit the darkslateblue color from .cabin because I'm not inside it.</p>
+  </footer>
+
+</body>
+</html>
