@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>The News Times | Classic Front Page</title>
+    <style>
+        /* ----- RESET & GLOBAL STYLES ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e2ded5;   /* vintage newspaper background tone */
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+            line-height: 1.45;
+            padding: 2rem 1rem;
+            color: #1e1a15;
+        }
+
+        /* main newspaper container — classic broadsheet feel */
+        .newspaper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fffcf7;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem 2rem 2.5rem;
+            border-radius: 4px;
+        }
+
+        /* ----- HEADER & TITLE (MASTHEAD) ----- */
+        .masthead {
+            text-align: center;
+            border-bottom: 4px double #2c2822;
+            padding-bottom: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .edition {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #5a4a3a;
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            border-top: 1px solid #cdc6bc;
+            display: inline-block;
+            padding-top: 0.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .newspaper-name {
+            font-size: 4.2rem;
+            font-weight: 800;
+            font-family: 'Times New Roman', 'Georgia', serif;
+            letter-spacing: -0.5px;
+            word-break: keep-all;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #1f1b16 0%, #3d3329 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.02);
+            margin: 0.2rem 0;
+        }
+
+        .date-line {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border-top: 1px solid #cdc6bc;
+            border-bottom: 1px solid #cdc6bc;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            letter-spacing: 1px;
+            font-family: monospace;
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        /* ----- NAVIGATION BAR (LINKS WITH HOVER UNDERLINE) ----- */
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            row-gap: 0.6rem;
+            padding: 0.8rem 0 0.6rem;
+            margin-top: 0.6rem;
+            border-top: 1px solid #ddd4c8;
+            border-bottom: 1px solid #ddd4c8;
+            background: #fefaf4;
+        }
+
+        .nav-links a {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #2c3e2f;
+            text-decoration: none;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s;
+        }
+
+        /* critical: underline on hover */
+        .nav-links a:hover {
+            border-bottom-color: #b85c1a;
+            color: #a14512;
+            text-decoration: none;   /* ensures clean underline via border */
+        }
+
+        /* ----- MAIN LAYOUT: GRID SYSTEM (classic newspaper columns) ----- */
+        .front-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            gap: 1.6rem;
+            margin: 1.8rem 0 1.8rem;
+        }
+
+        /* common card styling inside each column */
+        .story-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .story-card h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Times New Roman', serif;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+            border-left: 4px solid #c17b4c;
+            padding-left: 0.8rem;
+            color: #2c241a;
+        }
+
+        .story-card .byline {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6e5a48;
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .story-card p {
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+            color: #2f2a24;
+        }
+
+        /* image styling */
+        .news-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0.6rem 0 0.8rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+            object-fit: cover;
+        }
+
+        .news-image:hover {
+            transform: scale(1.01);
+        }
+
+        /* second column bigger (feature) */
+        .feature-story h2 {
+            font-size: 2rem;
+            border-left-width: 6px;
+        }
+
+        /* right column additional style */
+        .sidebar-note {
+            background: #f9f3ea;
+            padding: 0.8rem 1rem;
+            margin-top: 1rem;
+            border-left: 3px solid #bc9a6f;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* bottom section / extra story row (classic 2-column under main grid) */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e5dacd;
+        }
+
+        .bottom-story {
+            background: #fefaf2;
+            padding: 0.6rem 0.8rem 0.8rem 0.8rem;
+            border-radius: 3px;
+        }
+
+        .bottom-story h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            font-family: 'Times New Roman', serif;
+            border-bottom: 1px dotted #d4c4b2;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+        }
+
+        .bottom-story p {
+            font-size: 0.92rem;
+        }
+
+        hr.divider {
+            margin: 1rem 0;
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, #e2cfb5, transparent);
+        }
+
+        /* footer / classic colophon */
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.7rem;
+            font-family: monospace;
+            color: #857b6f;
+            border-top: 1px solid #e2d8cc;
+            padding-top: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* responsive adjustments */
+        @media (max-width: 780px) {
+            .newspaper {
+                padding: 1.2rem;
+            }
+            .front-grid {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            .bottom-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .newspaper-name {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        /* making images consistent */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="newspaper">
+    <!-- MASTHEAD area -->
+    <div class="masthead">
+        <div class="edition">ESTABLISHED 1856 | WEEKEND EDITION</div>
+        <div class="newspaper-name">THE NEWS TIMES</div>
+        <div class="date-line">SATURDAY, JUNE 6, 2026 • FOUR PAGES • TWENTY-FIVE CENTS</div>
+    </div>
+
+    <!-- NAVIGATION LINKS (hover underlines enabled) -->
+    <div class="nav-links">
+        <a href="#">WORLD</a>
+        <a href="#">NATIONAL</a>
+        <a href="#">POLITICS</a>
+        <a href="#">BUSINESS</a>
+        <a href="#">OPINION</a>
+        <a href="#">SCIENCE</a>
+        <a href="#">HEALTH</a>
+        <a href="#">ARTS</a>
+        <a href="#">SPORTS</a>
+    </div>
+
+    <!-- MAIN GRID: three column layout (photo story + central feature + sidebar) -->
+    <div class="front-grid">
+        <!-- LEFT COLUMN: main news with pet image (dog25) -->
+        <div class="story-card">
+            <h2>RESCUE MISSION<br> SAVES PACK</h2>
+            <div class="byline">By MARGARET FOSTER • SENIOR REPORTER</div>
+            <!-- Use the exact pet image URL from requirement -->
+            <img class="news-image" src="http://pets-images.dev-apis.com/pets/dog25.jpg" alt="A loyal rescue dog featured in news">
+            <p>In a dramatic overnight operation, volunteer crews pulled seven stranded hikers and their canine companions from the treacherous Redwood Gorge. The rescue, which lasted nearly twelve hours, relied on innovative drone technology and old-fashioned grit. One of the dogs, a two-year-old Border Collie mix named Juniper, led responders to the final missing group after breaking free from a makeshift shelter. “She refused to leave anyone behind,” said first responder Clara Wu. The story has since captured hearts across the nation, renewing conversations about wilderness preparedness and pet safety on remote trails. Local officials applauded the teamwork that ensured no lives were lost — furry or otherwise.</p>
+            <p>Photographs from the scene show exhausted but grateful survivors, including Juniper wearing a bright orange rescue vest. The dog is now being hailed as a hero in online tributes.</p>
+        </div>
+
+        <!-- CENTER COLUMN: main feature story (biggest) -->
+        <div class="story-card feature-story">
+            <h2>SUPREME COURT UPHOLDS LANDMARK DIGITAL RULING</h2>
+            <div class="byline">By JONATHAN PIERCE • LEGAL AFFAIRS CORRESPONDENT</div>
+            <p>In a 6–3 decision delivered early Friday morning, the United States Supreme Court affirmed a groundbreaking federal statute regulating data privacy and algorithmic accountability, reshaping the legal landscape for major tech platforms. Chief Justice Elena Ramirez wrote in the majority opinion that “the right to control one’s digital footprint is not a luxury but a fundamental pillar of modern liberty.” The ruling requires that companies provide users with transparent access to personal data collected and offer an unambiguous mechanism for deletion. Opponents argue the new compliance costs could stifle innovation, while consumer advocacy groups cheered the outcome as a long-overdue check on corporate power.</p>
+            <p>The decision, which stems from a lawsuit filed three years ago by a coalition of digital rights nonprofits, could affect nearly every American who uses online services. Legal scholars anticipate a cascade of similar regulations in state legislatures. Meanwhile, stock markets showed mixed reactions, with technology shares dipping modestly but advertising-based firms absorbing the greatest losses. The White House signaled that it would work with Congress to implement the ruling’s framework. “This is a new chapter for the digital age,” said one constitutional expert during a panel at Georgetown Law.</p>
+            <div class="sidebar-note">
+                ★ ANALYSIS: Experts predict ripple effects across Europe and Asia, as global regulators adopt similar guardrails. The decision may also influence upcoming antitrust hearings.
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: additional news & quote style -->
+        <div class="story-card">
+            <h2>WINDS OF CHANGE<br> IN GLOBAL CLIMATE ACCORD</h2>
+            <div class="byline">By ELENA VASQUEZ • ENVIRONMENT EDITOR</div>
+            <p>Delegates from over 190 nations reached a sweeping agreement late Thursday to accelerate the phase-out of fossil fuel subsidies and triple renewable energy investments by 2030. The "Vientiane Declaration" also includes a first-ever commitment to protect biodiversity corridors across national borders. “This is not just a diplomatic victory; it is a lifeline for vulnerable communities,” remarked the UN climate chief. While environmental groups praised the ambition, some developing nations raised concerns about financing mechanisms. The deal sets legally binding milestones for carbon neutrality, with compliance reviews every two years. Energy markets reacted positively, with solar stocks surging in early trading. Observers say implementation will require unprecedented cooperation between private and public sectors. The next summit in Brasília is expected to refine the monitoring framework.</p>
+            <hr class="divider">
+            <p><strong>◉ IN OTHER NEWS:</strong> Historic heatwave breaks records in the Midwest; federal emergency aid allocated to five states. Local governments open cooling centers and urge water conservation.</p>
+        </div>
+    </div>
+
+    <!-- BOTTOM ROW: two columns with additional feature & human interest stories -->
+    <div class="bottom-row">
+        <div class="bottom-story">
+            <h3>RENAISSANCE OF PRINT</h3>
+            <div class="byline" style="margin-bottom: 0.3rem;">By SAMIRA O'BRIEN | CULTURE DESK</div>
+            <p>Despite digital dominance, a quiet renaissance of independent newspapers and literary journals is sweeping the country. Community-funded broadsheets are popping up from rural Vermont to downtown Los Angeles, attracting a new generation of readers who crave depth, context, and tactile engagement. “I love the ritual of flipping through pages with my morning coffee,” says longtime subscriber Elena Chu. Many of these publications embrace a hybrid model — digital subscriptions paired with a monthly print edition that feels like an art object. The trend reflects a broader desire for slower, more thoughtful news consumption.</p>
+            <p>Design enthusiasts note that classic typography and modular grids reminiscent of mid-century journalism are making a robust comeback, influencing everything from social media graphics to civic newsletters.</p>
+        </div>
+
+        <div class="bottom-story">
+            <h3>THE FUTURE OF URBAN PARKS</h3>
+            <div class="byline" style="margin-bottom: 0.3rem;">By DERRICK HAYES | CITY BEAT</div>
+            <p>Mayors from twelve metropolitan areas unveiled an ambitious proposal to transform underused rail corridors and vacant lots into “green arteries” — linear parks designed to improve flood resilience, increase walkability, and support local wildlife. The initiative, modeled after celebrated projects such as Atlanta's BeltLine and Paris's Promenade Plantée, promises to add more than 2,000 acres of public green space by 2030. Early community input sessions drew thousands of residents, many advocating for affordable housing components alongside ecological restoration. City planners hope that federal infrastructure funds will help accelerate construction. If successful, the blueprint could become a national template for equitable urban renewal.</p>
+            <p>Funding hearings are scheduled for next month, with a pilot segment already breaking ground in Eastside Corridor.</p>
+        </div>
+    </div>
+
+    <!-- extra line to show credibility & tiny archive note -->
+    <div class="footer-note">
+        THE NEWS TIMES — VOL. CLXXIV NO. 42  |  COPYRIGHT 2026, THE NEWS TIMES MEDIA GROUP. ALL RIGHTS RESERVED.  |  "TRUST, ACCURACY, AND INDEPENDENCE SINCE 1856"
+    </div>
+</div>
+</body>
+</html>
