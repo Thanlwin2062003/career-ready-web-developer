@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Flexbox Complete Examples</title>
+  <style>
+    /* Base styles for all boxes */
+    .flex-container > div {
+      background-color: #3498db;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+
+    /* Different colors for each box */
+    .box-1 { background-color: #3498db; }
+    .box-2 { background-color: #2ecc71; }
+    .box-3 { background-color: #e74c3c; }
+
+    /* Default height for boxes */
+    .flex-container > div:not(.no-height) {
+      height: 100px;
+    }
+
+    /* Main flex container base */
+    .flex-container {
+      display: flex;
+      width: 100%;
+      border: 1px solid black;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+    }
+
+    /* Section styling for readability */
+    .section {
+      margin-bottom: 40px;
+      padding: 20px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      background-color: white;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+
+    .section h3 {
+      color: #34495e;
+      margin-bottom: 10px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ecf0f1;
+    }
+
+    /* ============= FLEX PROPERTIES ============= */
+
+    /* flex-direction */
+    .reverse {
+      flex-direction: row-reverse;
+    }
+
+    .column {
+      flex-direction: column;
+    }
+
+    .column-reverse {
+      flex-direction: column-reverse;
+    }
+
+    /* justify-content */
+    .jc-right {
+      justify-content: flex-end;
+    }
+
+    .jc-center {
+      justify-content: center;
+    }
+
+    .jc-sb {
+      justify-content: space-between;
+    }
+
+    .jc-sa {
+      justify-content: space-around;
+    }
+
+    .jc-se {
+      justify-content: space-evenly;
+    }
+
+    /* align-items */
+    .ai-fe {
+      align-items: flex-end;
+    }
+
+    .ai-center {
+      align-items: center;
+    }
+
+    .ai-stretch {
+      align-items: stretch;
+      height: 200px;
+    }
+
+    /* Remove height for stretch example */
+    .no-height {
+      height: unset;
+    }
+
+    /* flex-grow */
+    .ai-grow {
+      /* nothing necessary here */
+    }
+
+    .ai-grow .box-1 {
+      flex-grow: 1;
+      width: 0;
+    }
+    .ai-grow .box-2 {
+      flex-grow: 5;
+      width: 0;
+    }
+    .ai-grow .box-3 {
+      flex-grow: 10;
+      width: 0;
+    }
+
+    /* Additional: flex-wrap example */
+    .flex-wrap {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .flex-wrap > div {
+      width: 150px;
+    }
+
+    /* Additional: order example */
+    .order-example .box-1 { order: 3; }
+    .order-example .box-2 { order: 1; }
+    .order-example .box-3 { order: 2; }
+
+    /* Additional: align-self example */
+    .align-self-example {
+      align-items: center;
+      height: 200px;
+    }
+    .align-self-example .box-1 { align-self: flex-start; }
+    .align-self-example .box-2 { align-self: stretch; }
+    .align-self-example .box-3 { align-self: flex-end; }
+
+    /* Combining classes - examples from the lesson */
+    .combination-1 {
+      /* reusing classes: ai-center, reverse, jc-sa */
+    }
+
+    .combination-2 {
+      /* reusing classes: ai-fe, column */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Flexbox Complete Guide</h1>
+  <p>All examples from the lesson plus additional properties. Resize your browser to see responsive behavior.</p>
+
+  <!-- SECTION 1: Basic Flex -->
+  <div class="section">
+    <h2>1. Basic Flex Container</h2>
+    <h3>Default flex (flex-direction: row, justify-content: flex-start)</h3>
+    <div class="flex-container">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+    <p><strong>Note:</strong> Boxes squish when narrow instead of wrapping (flex-wrap: nowrap is default).</p>
+  </div>
+
+  <!-- SECTION 2: flex-direction -->
+  <div class="section">
+    <h2>2. flex-direction</h2>
+    
+    <h3>row-reverse (backwards order)</h3>
+    <div class="flex-container reverse">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>column (vertical layout)</h3>
+    <div class="flex-container column">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>column-reverse (vertical backwards)</h3>
+    <div class="flex-container column-reverse">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: justify-content -->
+  <div class="section">
+    <h2>3. justify-content (horizontal alignment)</h2>
+    
+    <h3>flex-end (right-justified, same order)</h3>
+    <div class="flex-container jc-right">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>center (centered horizontally)</h3>
+    <div class="flex-container jc-center">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>space-between (first/last at edges, equal space between)</h3>
+    <div class="flex-container jc-sb">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>space-around (equal space around each item)</h3>
+    <div class="flex-container jc-sa">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>space-evenly (equal space including edges)</h3>
+    <div class="flex-container jc-se">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: align-items -->
+  <div class="section">
+    <h2>4. align-items (vertical alignment)</h2>
+    
+    <h3>flex-end (pushed to bottom)</h3>
+    <div class="flex-container ai-fe">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>center (vertically centered - the CSS holy grail!)</h3>
+    <div class="flex-container ai-center">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>stretch (fills container height - heights removed from boxes)</h3>
+    <div class="flex-container ai-stretch">
+      <div class="box-1 no-height">1</div>
+      <div class="box-2 no-height">2</div>
+      <div class="box-3 no-height">3</div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: flex-grow -->
+  <div class="section">
+    <h2>5. flex-grow (proportional widths)</h2>
+    <h3>Proportions: 1 : 5 : 10 (1/16, 5/16, 10/16 of available width)</h3>
+    <div class="flex-container ai-grow">
+      <div class="box-1">1</div>
+      <div class="box-2">5</div>
+      <div class="box-3">10</div>
+    </div>
+    <p><strong>How it works:</strong> Total parts = 16. Box 1 takes 1 part, Box 2 takes 5 parts, Box 3 takes 10 parts.</p>
+  </div>
+
+  <!-- SECTION 6: Combining Properties -->
+  <div class="section">
+    <h2>6. Combining Multiple Properties</h2>
+    
+    <h3>Combination 1: reverse + ai-center + jc-sa</h3>
+    <div class="flex-container ai-center reverse jc-sa">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>Combination 2: column + ai-fe</h3>
+    <div class="flex-container ai-fe column">
+      <div class="box-1">1</div>
+      <div class="box-2">2</div>
+      <div class="box-3">3</div>
+    </div>
+
+    <h3>Combination 3: center horizontally AND vertically</h3>
+    <div class="flex-container ai-center jc-center" style="height: 200px;">
+      <div class="box-1">Perfectly Centered!</div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: Bonus Properties from "Further Flex" -->
+  <div class="section">
+    <h2>7. Bonus: Advanced Flex Properties</h2>
+    
+    <h3>flex-wrap: wrap (multiple rows/columns)</h3>
+    <div class="flex-container flex-wrap">
+      <div class="box-1">Item 1</div>
+      <div class="box-2">Item 2</div>
+      <div class="box-3">Item 3</div>
+      <div class="box-1">Item 4</div>
+      <div class="box-2">Item 5</div>
+      <div class="box-3">Item 6</div>
+    </div>
+    <p>Items wrap to next line when they don't fit. Try resizing your browser!</p>
+
+    <h3>order (rearrange visual order without changing HTML)</h3>
+    <div class="flex-container order-example">
+      <div class="box-1">1 (order: 3)</div>
+      <div class="box-2">2 (order: 1)</div>
+      <div class="box-3">3 (order: 2)</div>
+    </div>
+    <p>Display order: 2, 3, 1 (but HTML order is 1, 2, 3)</p>
+
+    <h3>align-self (override align-items for individual items)</h3>
+    <div class="flex-container align-self-example">
+      <div class="box-1">flex-start</div>
+      <div class="box-2 no-height">stretch</div>
+      <div class="box-3">flex-end</div>
+    </div>
+    <p>Parent has align-items: center, but each child overrides with align-self.</p>
+  </div>
+
+  <!-- SECTION 8: Practical Examples -->
+  <div class="section">
+    <h2>8. Practical Real-World Examples</h2>
+    
+    <h3>Navigation Bar</h3>
+    <div class="flex-container jc-sb ai-center" style="background-color: #2c3e50; border-color: #2c3e50;">
+      <div style="background-color: transparent; color: white;">🏠 Logo</div>
+      <div style="background-color: transparent; color: white; display: flex; gap: 20px;">
+        <span>Home</span>
+        <span>About</span>
+        <span>Services</span>
+        <span>Contact</span>
+      </div>
+      <div style="background-color: transparent; color: white;">🔍 Search</div>
+    </div>
+
+    <h3>Card Layout with Flex-grow</h3>
+    <div class="flex-container" style="gap: 20px; background: none; border: none;">
+      <div style="flex: 1; background: white; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
+        <h3>Card 1</h3>
+        <p>This card takes equal space.</p>
+      </div>
+      <div style="flex: 1; background: white; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
+        <h3>Card 2</h3>
+        <p>All cards flex-grow equally.</p>
+      </div>
+      <div style="flex: 2; background: white; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
+        <h3>Card 3 (Featured)</h3>
+        <p>This card takes twice the space (flex: 2).</p>
+      </div>
+    </div>
+  </div>
+
+  <footer style="text-align: center; padding: 20px; color: #7f8c8d; border-top: 1px solid #ddd; margin-top: 20px;">
+    <p>📚 Learn more: Jen Kramer's Flexbox course | CSS-Tricks "A Complete Guide to Flexbox"</p>
+    <p>💡 Tip: Use your browser's DevTools to experiment with these properties live!</p>
+  </footer>
+
+</body>
+</html>
