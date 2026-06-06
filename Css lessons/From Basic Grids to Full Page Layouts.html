@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CSS Grid: From Basic Grids to Full Page Layouts</title>
+    <style>
+        /* -------------------------------
+           GLOBAL RESET & BASE STYLES
+        ------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+        }
+
+        /* container to give each demo some breathing space */
+        .demo-section {
+            max-width: 1280px;
+            margin: 0 auto 3rem auto;
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .demo-header {
+            background: #e2e8f0;
+            padding: 1rem 1.5rem;
+            border-bottom: 2px solid #cbd5e1;
+        }
+
+        .demo-header h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.25rem;
+        }
+
+        .demo-header p {
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .demo-content {
+            padding: 1.8rem;
+        }
+
+        /* ---------- BASIC GRID (2x2 photo gallery) ---------- */
+        .grid-gallery {
+            display: grid;
+            /* two equal columns using fr unit (fractional unit) */
+            grid-template-columns: 1fr 1fr;
+            /* row and column gaps = gutters */
+            row-gap: 10px;
+            column-gap: 10px;
+            background: #fff;
+            border-radius: 20px;
+        }
+
+        .grid-picture {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;  /* keeps images square & consistent */
+        }
+
+        .grid-picture:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        /* extra caption to highlight the gutters & fr concept */
+        .grid-notes {
+            background: #f8fafc;
+            margin-top: 1.2rem;
+            padding: 0.9rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            border-left: 5px solid #3b82f6;
+            color: #1e293b;
+        }
+
+        .grid-notes code {
+            background: #e2e8f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 8px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
+        }
+
+        /* ---------- ADVANCED PAGE LAYOUT (grid-template-areas) ---------- */
+        /* --- individual area styles (visual demo) --- */
+        .my-page-header {
+            grid-area: nav-header;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 1.2rem;
+            font-weight: bold;
+            font-size: 1.4rem;
+            border-radius: 1rem;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .my-page-body {
+            grid-area: main-body;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .my-page-sidebar {
+            grid-area: nav-side;
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 1rem;
+            font-weight: 500;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.2), 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .my-page-footer {
+            grid-area: footer;
+            background: linear-gradient(135deg, #eab308, #ca8a04);
+            color: #1e1b0a;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 1rem;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.3), 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* main grid container using grid-template-areas */
+        .my-page {
+            display: grid;
+            /* define 4 columns — perfect for the "nav-header + nav-side" layout */
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            /* gaps for better readability and spacing */
+            gap: 1rem;
+            background-color: #fef9e8;
+            padding: 1rem;
+            border-radius: 1.5rem;
+            /* defining the grid areas in a clean ASCII style */
+            grid-template-areas:
+                "nav-header  nav-header  nav-header  nav-side"
+                "main-body   main-body   .           nav-side"
+                "footer      footer      footer      footer";
+        }
+
+        /* demonstration of responsive behavior: on smaller screens we can adjust */
+        @media (max-width: 700px) {
+            .demo-content {
+                padding: 1rem;
+            }
+            .my-page {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                grid-template-areas:
+                    "nav-header"
+                    "nav-side"
+                    "main-body"
+                    "footer";
+            }
+            .my-page-header, .my-page-body, .my-page-sidebar, .my-page-footer {
+                border-radius: 0.8rem;
+            }
+            body {
+                padding: 1rem;
+            }
+        }
+
+        /* small extra style for empty cell visual clue */
+        /* the empty cell is represented by '.' in grid-template-areas */
+        /* it's automatically transparent, but we can add a little note for clarity */
+        .area-explanation {
+            background: #f1f5f9;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            border: 1px dashed #94a3b8;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .area-explanation strong {
+            color: #0f3b5c;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: none;
+            height: 1px;
+            background: #cbd5e1;
+        }
+
+        .flex-note {
+            background: #eef2ff;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1.5rem;
+            border-left: 6px solid #6366f1;
+        }
+
+        .flex-note a {
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .flex-note a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- DEMO 1: BASIC GRID 2x2 with 1fr + gaps (row-gap & column-gap) -->
+    <div class="demo-section">
+        <div class="demo-header">
+            <h2>📐 Basic CSS Grid · 2x2 Photo Gallery</h2>
+            <p>Using <code>display: grid</code>, <code>grid-template-columns: 1fr 1fr</code>, and <code>row-gap / column-gap</code> for gutters.</p>
+        </div>
+        <div class="demo-content">
+            <div class="grid-gallery">
+                <img class="grid-picture"
+                     src="http://pets-images.dev-apis.com/pets/dog25.jpg"
+                     alt="a playful doggy with floppy ears">
+                <img class="grid-picture"
+                     src="http://pets-images.dev-apis.com/pets/dog26.jpg"
+                     alt="a happy doggy in the sunshine">
+                <img class="grid-picture"
+                     src="http://pets-images.dev-apis.com/pets/dog27.jpg"
+                     alt="a curious doggy exploring">
+                <img class="grid-picture"
+                     src="http://pets-images.dev-apis.com/pets/dog28.jpg"
+                     alt="a fluffy doggy smiling">
+            </div>
+            <div class="grid-notes">
+                💡 <strong>Grid insights:</strong> <code>1fr</code> = fraction of available space. Two <code>1fr</code> columns → each takes 50% minus gutters.<br>
+                🧩 <strong>Gutters:</strong> <code>row-gap: 10px;</code> and <code>column-gap: 10px;</code> create clean spacing between items.<br>
+                🔁 <strong>Compare to Flexbox:</strong> Grid is two‑dimensional (rows + columns), perfect for page scaffolding & photo grids.
+            </div>
+        </div>
+    </div>
+
+    <!-- DEMO 2: ADVANCED PAGE LAYOUT using grid-template-areas -->
+    <div class="demo-section">
+        <div class="demo-header">
+            <h2>🏗️ Full Page Layout · Grid Template Areas</h2>
+            <p>Using <code>grid-template-areas</code> to define named regions: header, sidebar, main content & footer. Empty cell with <code>.</code> (dot).</p>
+        </div>
+        <div class="demo-content">
+            <!-- The main grid container with named areas -->
+            <div class="my-page">
+                <header class="my-page-header">
+                    🐶 HEADER · Site Navigation / Brand
+                </header>
+                <div class="my-page-body">
+                    <strong>📄 MAIN CONTENT AREA</strong><br>
+                    This is the primary body of the page layout. With CSS Grid’s <code>grid-template-areas</code>, we can easily position content without extra wrappers.<br><br>
+                    ✨ The second row has an empty cell (<code>.</code>) — that creates breathing space between main-body and the sidebar naturally. Grid handles both rows and columns simultaneously. Unlike Flexbox, which is one-dimensional, Grid provides true two-dimensional control.
+                </div>
+                <div class="my-page-sidebar">
+                    🧭 SIDEBAR · Navigation & Widgets<br>
+                    🌟 Links, tags, or recent posts.<br>
+                    🔹 Spans across the right side vertically.
+                </div>
+                <footer class="my-page-footer">
+                    © 2026 CSS Grid Mastery · Footer spans all columns — because <code>footer footer footer footer</code> in grid-template-areas.
+                </footer>
+            </div>
+
+            <div class="area-explanation">
+                <strong>📌 How <code>grid-template-areas</code> works:</strong>
+                <pre style="background:#e9eef3; padding: 0.75rem; border-radius: 12px; margin-top: 8px; overflow-x: auto; font-size: 0.8rem;">
+grid-template-areas:
+  "nav-header  nav-header  nav-header  nav-side"
+  "main-body   main-body   .           nav-side"
+  "footer      footer      footer      footer";</pre>
+                • Every string = one row.<br>
+                • Each quoted group defines columns (4 columns in this layout).<br>
+                • <strong>nav-header</strong> spans first three columns → full width header except sidebar column.<br>
+                • <strong>nav-side</strong> occupies the last column, stretching two rows (row 1 & row 2).<br>
+                • <strong>.</strong> (dot) = empty cell → no element placed there.<br>
+                • <strong>footer</strong> stretches across all four columns in the last row.
+            </div>
+
+            <div class="flex-note">
+                💡 <strong>Grid vs Flexbox — quick comparison</strong><br>
+                ✅ <strong>Grid:</strong> Best for overall page structure (header/main/sidebar/footer). Handles both rows and columns with ease.<br>
+                ✅ <strong>Flexbox:</strong> Perfect for one-dimensional alignment (navigation bars, card rows, centering items). More flexible in content-driven layouts.<br>
+                🎯 Together they are unstoppable: use grid for macro layout, flexbox for micro components.
+            </div>
+        </div>
+    </div>
+
+    <!-- Extra note about inline-grid and further resources (CSS Tricks + Jen's class) -->
+    <div style="max-width: 1280px; margin: 0 auto; text-align: center; padding: 1rem 0 0.5rem;">
+        <div style="background: #f1f5f9; border-radius: 2rem; padding: 1rem 1.5rem; display: inline-block; text-align: left; width: auto; font-size: 0.9rem;">
+            <p>🎓 <strong>Keep exploring:</strong> CSS Grid also supports <code>inline-grid</code> (similar to inline-block but grid-powered).<br>
+            📚 <strong>Learn more:</strong> 
+            <a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank" rel="noopener noreferrer">CSS Tricks – Complete Guide to Grid</a> &nbsp;|&nbsp;
+            <a href="#" target="_blank">Jen's advanced class (recommended)</a> — deep dive into subgrid, auto-placement, and grid alignment.
+            </p>
+            <p style="margin-top: 0.5rem;">⭐ <strong>Pro tip:</strong> Combine <code>grid-template-columns</code> with <code>minmax()</code>, <code>repeat()</code> and <code>auto-fill</code> for responsive designs.</p>
+        </div>
+    </div>
+
+    <!-- Optionally: a tiny interactive demo hint via devtools? but clean and fully functional -->
+    <style>
+        /* additional polished behaviour */
+        .my-page, .grid-gallery {
+            transition: all 0.2s;
+        }
+        .grid-picture {
+            cursor: pointer;
+        }
+        /* make empty cell visible on hover? Not needed, but just ensure everything works */
+        @media (prefers-reduced-motion: reduce) {
+            .grid-picture {
+                transition: none;
+            }
+        }
+    </style>
+
+    <!-- 
+        ========== SUMMARY OF GRID FEATURES SHOWN ==========
+        1. Basic grid: display: grid; grid-template-columns: 1fr 1fr; gap (row-gap/column-gap)
+        2. Advanced layout: grid-template-areas with explicit named areas
+        3. Grid-area property connects HTML elements to template areas.
+        4. Empty cell using "." for strategic spacing.
+        5. Fractional units (fr) dynamically fill space.
+        6. Responsive overrides – media query that transforms the advanced grid into a stacked layout.
+        7. Visual demonstration of grid as powerful two-dimensional system.
+    -->
+</body>
+</html>
