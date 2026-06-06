@@ -1,0 +1,455 @@
+Here is the complete HTML/CSS code that combines all the animation examples from your description into a single, working document.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>CSS Animations: Spin, Easing, and Rainbow Effects</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f5f7fc 0%, #e9eef4 100%);
+      font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 2rem 1.5rem;
+      color: #1a2c3e;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* card styles */
+    .demo-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      transition: transform 0.2s ease;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-3px);
+    }
+
+    h2 {
+      font-weight: 600;
+      font-size: 1.7rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #1f2f3e, #2c4c6c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.2px;
+    }
+
+    .subhead {
+      color: #2c5368;
+      border-left: 4px solid #3b82f6;
+      padding-left: 1rem;
+      margin: 0.5rem 0 1rem 0;
+      font-weight: 450;
+      font-size: 1rem;
+    }
+
+    code {
+      background: #1e2a36;
+      color: #e2f0ff;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+    }
+
+    .spin-demo {
+      background: #ffffffcc;
+      border-radius: 1.5rem;
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* keyframes for spinning */
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinny-boi {
+      animation: spin 0.5s infinite linear;
+      display: inline-block;
+      font-size: 60px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+    }
+
+    .spinny-boi:active {
+      animation-duration: 0.2s;
+    }
+
+    .info-text {
+      background: #f0f4fa;
+      padding: 0.8rem 1.2rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      color: #1e3a5f;
+    }
+
+    /* ---- dancers section (easing functions) ---- */
+    .dancers-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0 0;
+      background: #f8fafd;
+      border-radius: 1.8rem;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .dancers-list li {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e2edf7;
+      font-weight: 500;
+      font-size: 1.1rem;
+      background: white;
+      transition: background 0.2s;
+    }
+
+    .dancers-list li:last-child {
+      border-bottom: none;
+    }
+
+    .dancers-list li:hover {
+      background: #fefce8;
+    }
+
+    .label {
+      width: 130px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      background: #eef3fc;
+      padding: 0.25rem 0.8rem;
+      border-radius: 40px;
+      margin-right: 1.2rem;
+      text-align: center;
+    }
+
+    .dancer {
+      display: inline-block;
+      font-size: 36px;
+      position: relative;
+      /* We'll use translate animation */
+      transform: translateX(0);
+    }
+
+    /* keyframes for sliding movement (horizontal translation) */
+    @keyframes move {
+      to {
+        transform: translateX(50px);
+      }
+    }
+
+    /* common animation properties for all dancers */
+    .dancer {
+      animation-name: move;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    /* different timing functions */
+    .linear {
+      animation-timing-function: linear;
+    }
+    .ease {
+      animation-timing-function: ease;
+    }
+    .ease-in-out {
+      animation-timing-function: ease-in-out;
+    }
+    .ease-in {
+      animation-timing-function: ease-in;
+    }
+    .ease-out {
+      animation-timing-function: ease-out;
+    }
+    .cubic-bezier {
+      animation-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    }
+
+    /* small tweak for better visual tracking */
+    .track {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .move-bg {
+      flex: 1;
+      height: 4px;
+      background: linear-gradient(90deg, #cbd5e1, #94a3b8);
+      border-radius: 6px;
+      margin-left: 1rem;
+      position: relative;
+    }
+
+    /* rainbow section */
+    .rainbow-card {
+      text-align: center;
+    }
+
+    @keyframes rainbow {
+      0%, 100% {
+        color: rgb(255, 0, 0);
+      }
+      8% {
+        color: rgb(255, 127, 0);
+      }
+      16% {
+        color: rgb(255, 255, 0);
+      }
+      25% {
+        color: rgb(127, 255, 0);
+      }
+      33% {
+        color: rgb(0, 255, 0);
+      }
+      41% {
+        color: rgb(0, 255, 127);
+      }
+      50% {
+        color: rgb(0, 255, 255);
+      }
+      58% {
+        color: rgb(0, 127, 255);
+      }
+      66% {
+        color: rgb(0, 0, 255);
+      }
+      75% {
+        color: rgb(127, 0, 255);
+      }
+      83% {
+        color: rgb(255, 0, 255);
+      }
+      91% {
+        color: rgb(255, 0, 127);
+      }
+    }
+
+    .rainbow-boi {
+      animation: rainbow 4s infinite linear;
+      font-size: 58px;
+      font-weight: 800;
+      display: inline-block;
+      padding: 0.3rem 1.2rem;
+      background: rgba(0,0,0,0.03);
+      border-radius: 80px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .rainbow-boi:hover {
+      transform: scale(1.02);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #4b6f8c;
+      border-top: 1px solid #cbdde9;
+      padding-top: 1.5rem;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+      .demo-card {
+        padding: 1.2rem;
+      }
+      .label {
+        width: auto;
+        min-width: 100px;
+        font-size: 0.75rem;
+      }
+      .dancer {
+        font-size: 28px;
+      }
+      .spinny-boi {
+        font-size: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- spinny-boi section: basic @keyframes -->
+  <div class="demo-card">
+    <h2>🌀 Spin revolution</h2>
+    <div class="subhead"><code>@keyframes spin</code> → infinite rotation, linear timing</div>
+    <div class="spin-demo">
+      <div class="spinny-boi" aria-label="spinning emoji" role="img">🤢</div>
+      <div class="info-text">
+        ⚡ <strong>@keyframes spin</strong> { to { transform: rotate(360deg); } }<br>
+        <code>animation: spin 0.5s infinite linear;</code> — full spin every half second.<br>
+        💡 <em>Click/tap the emoji to speed it up temporarily!</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- Easing functions + dancer movement (translate) -->
+  <div class="demo-card">
+    <h2>🎭 Easing & motion curves</h2>
+    <div class="subhead">Different timing functions create distinct "rubber-banding" feelings — great for physics, UI, or natural motion.</div>
+    <ul class="dancers-list">
+      <li>
+        <span class="label">linear</span>
+        <div class="track">
+          <span class="dancer linear">💃</span>
+          <div class="move-bg"></div>
+        </div>
+      </li>
+      <li>
+        <span class="label">ease</span>
+        <div class="track">
+          <span class="dancer ease">💃</span>
+          <div class="move-bg"></div>
+        </div>
+      </li>
+      <li>
+        <span class="label">ease-in-out</span>
+        <div class="track">
+          <span class="dancer ease-in-out">💃</span>
+          <div class="move-bg"></div>
+        </div>
+      </li>
+      <li>
+        <span class="label">ease-in</span>
+        <div class="track">
+          <span class="dancer ease-in">💃</span>
+          <div class="move-bg"></div>
+        </div>
+      </li>
+      <li>
+        <span class="label">ease-out</span>
+        <div class="track">
+          <span class="dancer ease-out">💃</span>
+          <div class="move-bg"></div>
+        </div>
+      </li>
+      <li>
+        <span class="label">cubic-bezier(0,1,.5,1)</span>
+        <div class="track">
+          <span class="dancer cubic-bezier">💃</span>
+          <div class="move-bg"></div>
+        </div>
+      </li>
+    </ul>
+    <div class="info-text" style="margin-top: 1rem;">
+      ✨ All dancers share the same <code>@keyframes move { to { translate: 50px; } }</code> <br>
+      🕺 Each uses a different <code>animation-timing-function</code> — watch the sway! <code>cubic-bezier</code> gives full custom control.
+    </div>
+  </div>
+
+  <!-- Rainbow animation: multiple keyframe stops (color cycling) -->
+  <div class="demo-card rainbow-card">
+    <h2>🌈 Chromatic animation</h2>
+    <div class="subhead"><code>@keyframes rainbow</code> with percentage stops (0%, 8%, 16% ... 100%) → smooth color morphing</div>
+    <div style="padding: 1rem 0;">
+      <div class="rainbow-boi">Rainbow</div>
+    </div>
+    <div class="info-text">
+      🎨 <strong>Beyond position:</strong> Animating <code>color</code> property!<br>
+      📐 Keyframes from 0% to 100% step through the RGB spectrum. Infinite linear loop over 4 seconds.<br>
+      💡 You can animate <em>any</em> interpolable property: width, height, background, filter, transform, etc.
+    </div>
+  </div>
+
+  <!-- Bonus explanation: keyframes with from / to & percentages -->
+  <div class="demo-card">
+    <h2>📚 Deeper into <code>@keyframes</code></h2>
+    <div class="subhead"><code>from</code> (0%) and <code>to</code> (100%) are shortcuts — percentages give fine control</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: start;">
+      <div style="flex: 1; min-width: 200px;">
+        <div style="background: #1e293b; padding: 1rem; border-radius: 1.2rem; color: #e2e8f0; font-family: monospace; font-size: 0.8rem;">
+          <span style="color:#facc15;">@keyframes</span> <span style="color:#7dd3fc;">spin</span> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#94a3b8;">to</span> { <span style="color:#86efac;">transform</span>: <span style="color:#fde047;">rotate(360deg)</span>; }<br>
+          }<br><br>
+          <span style="color:#facc15;">@keyframes</span> <span style="color:#7dd3fc;">rainbow</span> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#94a3b8;">0%</span>, <span style="color:#94a3b8;">100%</span> { <span style="color:#86efac;">color</span>: <span style="color:#fde047;">rgb(255,0,0)</span>; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#94a3b8;">8%</span> { <span style="color:#86efac;">color</span>: <span style="color:#fde047;">rgb(255,127,0)</span>; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+          }
+        </div>
+      </div>
+      <div style="flex: 1; min-width: 200px;">
+        <div class="info-text" style="background: #eef2ff;">
+          ✅ <strong>animation shorthand:</strong> <code>animation: name duration timing-function iteration-count direction;</code><br>
+          ✅ <strong>Individual properties:</strong> <code>animation-name</code>, <code>animation-duration</code>, <code>animation-timing-function</code>, <code>animation-iteration-count</code>, <code>animation-direction</code>, <code>animation-fill-mode</code>, <code>animation-delay</code>.<br>
+          ✅ Use <code>alternate</code> direction to bounce back and forth!
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    🧪 CSS animations deep dive — built with 💙 | MDN references: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations" target="_blank" rel="noopener">CSS Animations</a> • 
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function" target="_blank">easing functions</a> • 
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cubic-bezier" target="_blank">cubic-bezier</a>
+  </footer>
+</div>
+
+<!-- small interactive: clicking spinny-boi to temporary speed increase (just playful demo) -->
+<script>
+  (function() {
+    const spinny = document.querySelector('.spinny-boi');
+    if (spinny) {
+      let originalDuration = '0.5s';
+      spinny.addEventListener('click', function(e) {
+        // enhance interaction: speed up for a moment then revert
+        const currentAnim = window.getComputedStyle(spinny).animationDuration;
+        spinny.style.animationDuration = '0.15s';
+        setTimeout(() => {
+          spinny.style.animationDuration = originalDuration;
+        }, 300);
+      });
+    }
+    // optional extra: add hover note for cubic bezier info (not needed but nice)
+    const cubicLi = document.querySelector('.cubic-bezier');
+    if (cubicLi) {
+      cubicLi.parentElement?.setAttribute('title', 'cubic-bezier(0,1,.5,1) creates a bouncy/overshoot effect');
+    }
+  })();
+</script>
+</body>
+</html>
