@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments - Code is for Humans First</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Courier New', monospace;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .quote {
+            background: rgba(102, 126, 234, 0.2);
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(30, 27, 58, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            color: #a78bfa;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: #1a1a2e;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            border-left: 3px solid #667eea;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #7dd3fc;
+        }
+
+        .interactive-demo {
+            background: #0f0f1a;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        /* Input Controls */
+        .control-group {
+            margin: 1rem 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #c4b5fd;
+            font-weight: 500;
+        }
+
+        input, select, button {
+            background: #1e1b2e;
+            border: 1px solid #4c1d95;
+            color: #e0e0e0;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: monospace;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, button:focus {
+            outline: none;
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.2);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .output {
+            background: #0a0a14;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-family: monospace;
+            border: 1px solid #4c1d95;
+            min-height: 60px;
+        }
+
+        .highlight {
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        .variable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .variable-item {
+            background: #0f0f1a;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .variable-name {
+            color: #7dd3fc;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+
+        .variable-value {
+            color: #fbbf24;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .console-log {
+            background: #0a0a14;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin: 0.25rem 0;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #10b981;
+        }
+
+        hr {
+            border-color: rgba(102, 126, 234, 0.3);
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>📝 JavaScript Experiments</h1>
+            <p>Code is for <span class="highlight">humans first</span> and computers second</p>
+            <div class="quote">
+                "You will spend far longer maintaining this code than writing it. Be explicit. Be deliberate. Code is communication."
+            </div>
+        </div>
+
+        <!-- Lesson 1: Variables and Constants -->
+        <div class="card">
+            <h2>📦 Lesson 1: Variables & Constants</h2>
+            <p>Variables store data. <code>const</code> means the value won't change. Use <strong>camelCase</strong> naming!</p>
+            
+            <div class="code-block">
+                <pre>// Good variable naming (camelCase)
+const monthlyRent = 500;
+const yearlyRent = monthlyRent * 12;</pre>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>🎮 Try it yourself:</h3>
+                <div class="control-group">
+                    <label>Monthly Rent ($):</label>
+                    <input type="number" id="monthlyRentInput" value="500" step="50">
+                </div>
+                
+                <div class="variable-grid">
+                    <div class="variable-item">
+                        <div class="variable-name">monthlyRent</div>
+                        <div class="variable-value" id="monthlyDisplay">$500</div>
+                    </div>
+                    <div class="variable-item">
+                        <div class="variable-name">yearlyRent</div>
+                        <div class="variable-value" id="yearlyDisplay">$6000</div>
+                    </div>
+                    <div class="variable-item">
+                        <div class="variable-name">monthsInYear</div>
+                        <div class="variable-value">12</div>
+                    </div>
+                </div>
+                
+                <div class="output" id="rentOutput">
+                    💡 Change the monthly rent and see both values update automatically!
+                </div>
+            </div>
+        </div>
+
+        <!-- Lesson 2: Console Logging -->
+        <div class="card">
+            <h2>🖨️ Lesson 2: console.log()</h2>
+            <p><code>console.log()</code> prints values to the JavaScript Console (F12 or Right-click → Inspect → Console)</p>
+            
+            <div class="code-block">
+                <pre>console.log(yearlyRent);  // Prints: 6000</pre>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>🎮 Console Playground:</h3>
+                <button onclick="logMessage()">📢 Log "Hello from JavaScript!"</button>
+                <button onclick="logVariable()">📊 Log current yearlyRent</button>
+                <button onclick="clearConsoleMessage()">🗑️ Clear messages</button>
+                
+                <div class="output" id="consoleOutput">
+                    <div class="console-log">💡 Click the buttons above to see console.log() in action!</div>
+                    <div class="console-log">👉 Open your browser's developer console (F12) to see the actual console.log() output</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lesson 3: Why Use Variables? -->
+        <div class="card">
+            <h2>💡 Lesson 3: Why Variables Matter</h2>
+            <p>Imagine if your rent increased - change it in <strong>ONE</strong> place, and everything updates!</p>
+            
+            <div class="code-block">
+                <pre>// BAD (hard to maintain):
+const totalRentBad = 550 * 12 + 550 * 0.1;
+
+// GOOD (clear & maintainable):
+const monthlyRentGood = 550;
+const yearlyRentGood = monthlyRentGood * 12;
+const depositGood = monthlyRentGood * 0.1;
+const totalCostGood = yearlyRentGood + depositGood;</pre>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>🎮 See the Difference:</h3>
+                <div class="control-group">
+                    <label>Monthly Rent with variables:</label>
+                    <input type="number" id="rentVariable" value="550" step="50">
+                </div>
+                
+                <div id="calculationDisplay" style="margin-top: 1rem;">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+                
+                <button onclick="updateWithVariables()">🔄 Calculate with Variables</button>
+                <button onclick="showHardcodedComparison()">⚠️ Compare with Hardcoded</button>
+            </div>
+        </div>
+
+        <!-- Lesson 4: Naming Challenge -->
+        <div class="card">
+            <h2>🏆 Challenge: Name That Variable!</h2>
+            <p>Good variable names are <strong>descriptive, specific, and honest</strong>. Which names are better?</p>
+            
+            <div class="variable-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="variable-item">
+                    <div class="variable-name">❌ Bad Name</div>
+                    <div class="variable-value" style="font-size: 1rem;">x</div>
+                    <div style="margin-top: 0.5rem;">What is this? 🤔</div>
+                </div>
+                <div class="variable-item">
+                    <div class="variable-name">✅ Good Name</div>
+                    <div class="variable-value" style="font-size: 1rem;">userAgeInYears</div>
+                    <div style="margin-top: 0.5rem;">Clear and specific! ✨</div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>📝 Your Turn:</h3>
+                <div class="control-group">
+                    <label>Write a variable name for "the price of a pizza including 10% tax":</label>
+                    <input type="text" id="userVariableName" placeholder="e.g., pizzaPriceWithTax">
+                    <button onclick="checkVariableName()" style="margin-top: 0.5rem;">✓ Check Name</button>
+                </div>
+                <div class="output" id="namingFeedback"></div>
+            </div>
+        </div>
+
+        <!-- Live Console Simulator -->
+        <div class="card">
+            <h2>🎯 JavaScript Console Simulator</h2>
+            <p>Write JavaScript code here and see what happens! Try: <code>const test = 42; console.log(test);</code></p>
+            
+            <div class="interactive-demo">
+                <textarea id="codeInput" rows="4" style="width: 100%; font-family: monospace; background: #0a0a14; border: 1px solid #4c1d95; color: #e0e0e0; padding: 0.7rem; border-radius: 8px;">const myNumber = 100;
+const myString = "Hello!";
+console.log(myNumber);
+console.log(myString);</textarea>
+                
+                <button onclick="runCode()">▶️ Run Code</button>
+                <button onclick="clearOutput()">🗑️ Clear Output</button>
+                
+                <div class="output" id="codeOutput">
+                    <div class="console-log">// Output will appear here</div>
+                </div>
+                <div class="output" id="errorOutput" style="color: #ef4444; display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // LESSON 1: Variables Demo
+        // ============================================
+        let currentMonthlyRent = 500;
+        
+        function updateRentCalculations() {
+            const monthlyInput = document.getElementById('monthlyRentInput');
+            let monthlyValue = parseFloat(monthlyInput.value);
+            
+            if (isNaN(monthlyValue)) {
+                monthlyValue = 500;
+                monthlyInput.value = 500;
+            }
+            
+            currentMonthlyRent = monthlyValue;
+            const yearlyValue = monthlyValue * 12;
+            
+            // Update displays
+            document.getElementById('monthlyDisplay').innerHTML = `$${monthlyValue}`;
+            document.getElementById('yearlyDisplay').innerHTML = `$${yearlyValue}`;
+            
+            const outputDiv = document.getElementById('rentOutput');
+            outputDiv.innerHTML = `
+                <div class="console-log">✅ Variables updated!</div>
+                <div class="console-log">📊 const monthlyRent = ${monthlyValue};</div>
+                <div class="console-log">📊 const yearlyRent = monthlyRent * 12; // ${yearlyValue}</div>
+                <div class="console-log">💡 ${yearlyValue} / 12 = ${monthlyValue} (consistency check passed)</div>
+            `;
+            
+            // Also log to real console
+            console.log(`[Demo] monthlyRent updated to $${monthlyValue}`);
+            console.log(`[Demo] yearlyRent calculated as $${yearlyValue}`);
+        }
+        
+        document.getElementById('monthlyRentInput').addEventListener('input', updateRentCalculations);
+        
+        // ============================================
+        // LESSON 2: Console Logging Functions
+        // ============================================
+        function logMessage() {
+            const message = "Hello from JavaScript!";
+            console.log(message);
+            
+            const outputDiv = document.getElementById('consoleOutput');
+            const newLog = document.createElement('div');
+            newLog.className = 'console-log';
+            newLog.innerHTML = `📢 console.log("${message}") → Check your REAL browser console! (F12)`;
+            outputDiv.appendChild(newLog);
+            
+            // Auto-scroll
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+        }
+        
+        function logVariable() {
+            const monthly = parseFloat(document.getElementById('monthlyRentInput').value) || 500;
+            const yearly = monthly * 12;
+            console.log(`Yearly rent: $${yearly} (based on monthly rent of $${monthly})`);
+            
+            const outputDiv = document.getElementById('consoleOutput');
+            const newLog = document.createElement('div');
+            newLog.className = 'console-log';
+            newLog.innerHTML = `📊 console.log(yearlyRent) → $${yearly} (see real console!)`;
+            outputDiv.appendChild(newLog);
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+        }
+        
+        function clearConsoleMessage() {
+            const outputDiv = document.getElementById('consoleOutput');
+            outputDiv.innerHTML = '<div class="console-log">🗑️ Console display cleared (real console still has history)</div>';
+            console.clear();
+            console.log("Console cleared! 👋");
+        }
+        
+        // ============================================
+        // LESSON 3: Variables vs Hardcoded
+        // ============================================
+        function updateWithVariables() {
+            const rent = parseFloat(document.getElementById('rentVariable').value) || 550;
+            const yearly = rent * 12;
+            const deposit = rent * 0.1;
+            const total = yearly + deposit;
+            
+            const displayDiv = document.getElementById('calculationDisplay');
+            displayDiv.innerHTML = `
+                <div class="code-block">
+                    <pre>// Using VARIABLES (maintainable!)
+const monthlyRent = ${rent};
+const yearlyRent = monthlyRent * 12;  // ${yearly}
+const deposit = monthlyRent * 0.1;     // ${deposit}
+const totalCost = yearlyRent + deposit; // ${total}</pre>
+                </div>
+                <div class="output" style="background: #064e3b;">
+                    ✅ Total cost (with variables): $${total}
+                </div>
+            `;
+            
+            console.log(`[Variables Demo] Monthly: $${rent}, Yearly: $${yearly}, Deposit: $${deposit}, Total: $${total}`);
+        }
+        
+        function showHardcodedComparison() {
+            const rent = parseFloat(document.getElementById('rentVariable').value) || 550;
+            
+            const displayDiv = document.getElementById('calculationDisplay');
+            displayDiv.innerHTML = `
+                <div class="code-block">
+                    <pre>// HARDCODED (hard to maintain)
+const totalCost = ${rent} * 12 + ${rent} * 0.1;  // ${rent * 12 + rent * 0.1}</pre>
+                </div>
+                <div class="output" style="background: #7f1d1d;">
+                    ⚠️ Problem: If rent changes to $600, you'd need to find and update BOTH numbers!<br>
+                    With variables, change ONE place and everything updates automatically.
+                </div>
+            `;
+            
+            console.warn("[Hardcoded Demo] Hard to maintain! Would need to find both numbers if rent changes.");
+        }
+        
+        // Initialize lesson 3 display
+        updateWithVariables();
+        document.getElementById('rentVariable').addEventListener('input', updateWithVariables);
+        
+        // ============================================
+        // LESSON 4: Naming Challenge
+        // ============================================
+        function checkVariableName() {
+            const userInput = document.getElementById('userVariableName').value;
+            const feedbackDiv = document.getElementById('namingFeedback');
+            
+            if (!userInput.trim()) {
+                feedbackDiv.innerHTML = '❌ Please enter a variable name!';
+                return;
+            }
+            
+            // Check if it's a valid JavaScript variable name
+            const isValid = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(userInput);
+            
+            if (!isValid) {
+                feedbackDiv.innerHTML = '❌ Invalid variable name! Must start with a letter, _, or $ and contain only letters, numbers, _, or $';
+                return;
+            }
+            
+            // Check for reserved keywords (simplified)
+            const reserved = ['const', 'let', 'var', 'function', 'if', 'else', 'return', 'console'];
+            if (reserved.includes(userInput)) {
+                feedbackDiv.innerHTML = '❌ Cannot use reserved keyword "' + userInput + '"!';
+                return;
+            }
+            
+            // Provide feedback on naming quality
+            let feedback = '✅ Valid variable name! ';
+            
+            if (userInput.includes('price') && userInput.includes('tax')) {
+                feedback += 'Excellent! Very descriptive and clear. ✨';
+            } else if (userInput.includes('pizza') || userInput.includes('price')) {
+                feedback += 'Good, but could be more specific. Try including "tax" or "total". 💡';
+            } else if (userInput.length < 5) {
+                feedback += 'A bit too short. Remember: code is for humans first - be descriptive! 📝';
+            } else if (userInput.includes('a') || userInput.includes('b') || userInput.includes('x')) {
+                feedback += 'Single letters are hard to understand. Use descriptive names! 🎯';
+            } else {
+                feedback += 'Nice work! Remember to always use camelCase and be descriptive. 🌟';
+            }
+            
+            feedbackDiv.innerHTML = feedback;
+            console.log(`[Naming Challenge] User suggested: ${userInput} - ${feedback}`);
+        }
+        
+        // ============================================
+        // CONSOLE SIMULATOR (safe eval)
+        // ============================================
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const outputDiv = document.getElementById('codeOutput');
+            const errorDiv = document.getElementById('errorOutput');
+            
+            // Clear previous output
+            outputDiv.innerHTML = '';
+            errorDiv.style.display = 'none';
+            errorDiv.innerHTML = '';
+            
+            // Capture console.log
+            const originalLog = console.log;
+            const logs = [];
+            
+            console.log = function(...args) {
+                logs.push(args.map(arg => {
+                    if (typeof arg === 'object') {
+                        return JSON.stringify(arg);
+                    }
+                    return String(arg);
+                }).join(' '));
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                // Use Function constructor instead of eval for slightly better safety
+                const func = new Function(code);
+                func();
+                
+                // Display captured logs
+                if (logs.length === 0) {
+                    outputDiv.innerHTML = '<div class="console-log">// No console.log() statements found</div>';
+                } else {
+                    logs.forEach(log => {
+                        const logElement = document.createElement('div');
+                        logElement.className = 'console-log';
+                        logElement.innerHTML = `> ${log}`;
+                        outputDiv.appendChild(logElement);
+                    });
+                }
+                
+                // Add success message
+                const successMsg = document.createElement('div');
+                successMsg.className = 'console-log';
+                successMsg.style.color = '#10b981';
+                successMsg.innerHTML = '✅ Code executed successfully!';
+                outputDiv.appendChild(successMsg);
+                
+            } catch (error) {
+                errorDiv.style.display = 'block';
+                errorDiv.innerHTML = `❌ Error: ${error.message}`;
+                outputDiv.innerHTML = '<div class="console-log">// Code failed to execute - check error below</div>';
+                console.error(error);
+            } finally {
+                // Restore original console.log
+                console.log = originalLog;
+            }
+        }
+        
+        function clearOutput() {
+            const outputDiv = document.getElementById('codeOutput');
+            const errorDiv = document.getElementById('errorOutput');
+            outputDiv.innerHTML = '<div class="console-log">// Output cleared</div>';
+            errorDiv.style.display = 'none';
+            errorDiv.innerHTML = '';
+        }
+        
+        // ============================================
+        // Initial Console Log (demonstration)
+        // ============================================
+        console.log("🎉 Welcome to the JavaScript Experiments!");
+        console.log("📖 Remember: Code is for humans first, computers second.");
+        console.log("💰 Initial monthlyRent:", currentMonthlyRent);
+        console.log("📅 Initial yearlyRent:", currentMonthlyRent * 12);
+        
+        // Display welcome in the console simulator
+        setTimeout(() => {
+            const welcomeMsg = document.createElement('div');
+            welcomeMsg.className = 'console-log';
+            welcomeMsg.style.color = '#a78bfa';
+            welcomeMsg.innerHTML = '🎓 Ready to learn? Check out the challenges above!';
+            document.getElementById('consoleOutput').appendChild(welcomeMsg);
+        }, 500);
+        
+        // Add helpful tip for developers console
+        console.log("%c💡 TIP: Right-click → Inspect → Console to see all console.log() messages!", "color: #fbbf24; font-size: 12px");
+    </script>
+</body>
+</html>
