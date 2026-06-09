@@ -1,0 +1,512 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #faf6ed;
+    background-image: radial-gradient(circle at 10% 20%, rgba(193, 154, 107, 0.06) 2%, transparent 2.5%);
+    background-size: 34px 34px;
+    color: #2c241a;
+    line-height: 1.5;
+    scroll-behavior: smooth;
+}
+
+/* container for consistent width */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+}
+
+/* ---------- TYPOGRAPHY & HEADER ---------- */
+.title {
+    font-size: 3.4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #3e2a1c 0%, #8b5e2c 55%, #c2702e 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 0.75rem;
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+.description {
+    font-size: 1.15rem;
+    color: #6f4a2a;
+    background: rgba(255, 248, 235, 0.9);
+    display: inline-block;
+    padding: 0.4rem 1.8rem;
+    border-radius: 60px;
+    font-weight: 500;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* ---------- MENU SECTION (CARD LAYOUT) ---------- */
+.menu-section {
+    background: #ffffffda;
+    backdrop-filter: blur(2px);
+    border-radius: 2rem;
+    padding: 2rem 2rem 2.2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f2e5d4;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.menu-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 42px -14px rgba(0, 0, 0, 0.12);
+}
+
+.menu-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4a2f1a;
+    border-left: 6px solid #dc874b;
+    border-left-color: #dc874b;
+    padding-left: 1rem;
+    margin-bottom: 1.75rem;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* GRID FOR COFFEE CARDS */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.4rem;
+}
+
+/* individual coffee card */
+.coffee-card {
+    background: #fffcf7;
+    border-radius: 1.5rem;
+    padding: 1.2rem 1.2rem 1rem;
+    transition: all 0.25s ease;
+    border: 1px solid #efe2d0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.02);
+}
+
+.coffee-card:hover {
+    border-color: #ddc29e;
+    background: #ffffff;
+    box-shadow: 0 15px 25px -12px rgba(98, 59, 28, 0.15);
+    transform: translateY(-4px);
+}
+
+.coffee-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.coffee-name {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: #35200e;
+    letter-spacing: -0.2px;
+}
+
+.coffee-desc {
+    font-size: 0.75rem;
+    color: #b7875a;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+.coffee-price {
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #c2631c;
+    background: #fef1e2;
+    padding: 0.25rem 0.9rem;
+    border-radius: 40px;
+    letter-spacing: -0.2px;
+}
+
+/* quantity selector (appears dynamically) */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.qty-btn {
+    background: #ede0cf;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.1s ease;
+    color: #5a3e28;
+}
+
+.qty-btn:hover {
+    background: #dbbc95;
+    color: #2d1f11;
+}
+
+.qty-value {
+    font-weight: 600;
+    min-width: 28px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.add-to-cart-btn {
+    background: #3a5a45;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 40px;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background: #2a4735;
+    transform: scale(0.96);
+}
+
+/* ---------- CART SIDEBAR (MODERN SLIDE-IN) ---------- */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 380px;
+    max-width: 90vw;
+    height: 100vh;
+    background: #fffbf4;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #eedfcb;
+    font-family: inherit;
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    padding: 1.5rem;
+    border-bottom: 2px solid #f1e3d2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3b2a1b;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #8f6e48;
+    transition: 0.1s;
+}
+
+.close-cart:hover {
+    color: #4e311a;
+    transform: scale(1.1);
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.2rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fef9f0;
+    margin-bottom: 0.8rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 18px;
+    border: 1px solid #f0e2d0;
+}
+
+.cart-item-info {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.cart-item-price {
+    color: #b75f1e;
+    font-weight: 700;
+}
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: #bb7e4b;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0 5px;
+}
+
+.cart-total {
+    padding: 1.2rem;
+    border-top: 2px dashed #e7d6c0;
+    font-weight: 800;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    background: #fffbf4;
+}
+
+.checkout-btn {
+    background: #1f3b2c;
+    margin: 0.8rem 1.2rem 1.8rem;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.checkout-btn:hover {
+    background: #2b523c;
+    transform: scale(0.97);
+}
+
+/* overlay when cart open */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+}
+
+.cart-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ---------- ORDER BUTTON WRAPPER ---------- */
+.order-button-wrapper {
+    text-align: center;
+    margin: 2rem 0 2rem;
+}
+
+.order-button {
+    background: #1f3b2c;
+    border: none;
+    padding: 1rem 2.6rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 80px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 18px rgba(31, 59, 44, 0.25);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-button:hover {
+    background: #2e523e;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 24px -6px rgba(31, 59, 44, 0.4);
+}
+
+.order-button:active {
+    transform: translateY(2px);
+}
+
+/* ---------- CONTACT SECTION & BUSINESS HOURS ---------- */
+.contact-hours-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.contact-info, .hours-info {
+    background: #fcf7ef;
+    border-radius: 1.8rem;
+    padding: 1.3rem 1.6rem;
+    border: 1px solid #ede0cf;
+    transition: 0.2s;
+}
+
+.contact-info h2, .hours-info h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #4f3822;
+    margin-bottom: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-info p, .hours-info p {
+    color: #6e4f30;
+}
+
+.contact-info a {
+    color: #b45a25;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid #eedbbc;
+    transition: 0.2s;
+}
+
+.contact-info a:hover {
+    color: #82471c;
+    border-bottom-color: #c0884b;
+}
+
+.hours-list {
+    list-style: none;
+    margin-top: 8px;
+}
+
+.hours-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px dashed #eedfcb;
+}
+
+/* testimonials section */
+.testimonials {
+    margin: 2rem 0 1.5rem;
+    background: #fff9f0;
+    border-radius: 1.8rem;
+    padding: 1.2rem 1.6rem;
+    border: 1px solid #efe2cf;
+}
+
+.testimonials h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #634b30;
+}
+
+.testimonial-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.testimonial {
+    font-style: italic;
+    background: #ffffffba;
+    padding: 8px 12px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+}
+
+/* footer */
+.footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eedbc6;
+    font-size: 0.75rem;
+    color: #aa8864;
+}
+
+/* ---------- TOAST NOTIFICATION ---------- */
+.toast-message {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    background: #2b2a27e6;
+    backdrop-filter: blur(10px);
+    color: #fff0e0;
+    padding: 0.7rem 1.8rem;
+    border-radius: 60px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    z-index: 1200;
+    opacity: 0;
+    transition: 0.2s;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: monospace;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 780px) {
+    .container {
+        padding: 1rem 1rem 2rem;
+    }
+    .title {
+        font-size: 2.4rem;
+    }
+    .menu-section h2 {
+        font-size: 1.7rem;
+    }
+    .contact-hours-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .cart-sidebar {
+        width: 320px;
+    }
+    .toast-message {
+        white-space: normal;
+        text-align: center;
+        font-size: 0.75rem;
+        max-width: 85vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .coffee-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .coffee-price {
+        align-self: flex-start;
+    }
+}

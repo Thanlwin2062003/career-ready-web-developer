@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Coffee Masters | Artisan Coffee Shop</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1 class="title">Welcome to Coffee Masters</h1>
+            <p class="description">Your one-stop shop for the best coffee in town!</p>
+        </div>
+
+        <!-- enhanced menu display (replacing plain ul with stylish cards) -->
+        <div class="menu-section">
+            <h2>☕ Our Menu</h2>
+            <div class="menu-grid">
+                <!-- Espresso -->
+                <div class="coffee-card">
+                    <div class="coffee-info">
+                        <span class="coffee-name">Espresso</span>
+                        <span class="coffee-desc">Rich & bold · single origin</span>
+                    </div>
+                    <div class="coffee-price">$3</div>
+                </div>
+                <!-- Cappuccino -->
+                <div class="coffee-card">
+                    <div class="coffee-info">
+                        <span class="coffee-name">Cappuccino</span>
+                        <span class="coffee-desc">Velvety foam · double shot option</span>
+                    </div>
+                    <div class="coffee-price">$4</div>
+                </div>
+                <!-- Latte -->
+                <div class="coffee-card">
+                    <div class="coffee-info">
+                        <span class="coffee-name">Latte</span>
+                        <span class="coffee-desc">Smooth steamed milk</span>
+                    </div>
+                    <div class="coffee-price">$4.5</div>
+                </div>
+                <!-- Mocha -->
+                <div class="coffee-card">
+                    <div class="coffee-info">
+                        <span class="coffee-name">Mocha</span>
+                        <span class="coffee-desc">Chocolate espresso bliss</span>
+                    </div>
+                    <div class="coffee-price">$5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Now button -->
+        <div class="order-button-wrapper">
+            <button class="order-button" id="orderNowBtn">
+                <span>⚡ Order Now</span>
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Contact Us block with email link -->
+        <div class="contact-info">
+            <h2>📬 Contact Us</h2>
+            <p>Email: 
+                <a href="mailto:info@coffeemasters.com">info@coffeemasters.com</a>
+            </p>
+            <div class="bean-decoration">✦ • ✦ • ✦</div>
+        </div>
+        <footer>
+            © Coffee Masters — artisan roasts & community
+        </footer>
+    </div>
+
+    <!-- toast notification container -->
+    <div id="orderToast" class="toast-message">✨ Order placed! ✨</div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
