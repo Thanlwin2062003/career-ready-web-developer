@@ -1,0 +1,48 @@
+.heading1{
+    color:red;
+    margin: center;
+    text-align: right;
+}
+.heading2{
+    color:green;
+    text-align: center;
+    border:3px dotted green;
+}
+.Heading1{
+    color:red;
+    text-align:right;
+}
+.text{
+    background-color: black;
+    color: white;
+}
+.span-tag{
+    color:yellow;
+    text-decoration:underline;
+}
+.span-tag2{
+    color: yellow;
+    text-decoration: underline;
+}
+.heading3{
+    color: blue;
+    font: 900;
+}
+.text1{
+    background-color: black;
+    color:white;
+}
+.list1{
+    color:red;
+}
+.list2{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.head2{
+    color: green;
+    text-align: center;
+    border: 3px dotted gray;
+}
+.text-decoration1{
+    text-decoration: green wavy underline;
+}

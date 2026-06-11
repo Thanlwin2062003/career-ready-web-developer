@@ -1,0 +1,12 @@
+.heading1{
+    color: red;
+}
+.heading2{
+    color: green;
+    text-decoration: underline;
+    text-transform: uppercase;
+    border:3px solid pink;
+    width:fit-content;
+    font-size:40px;
+    
+}
