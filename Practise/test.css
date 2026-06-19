@@ -1,0 +1,47 @@
+.box{
+    padding-top:10px;
+    padding-right:15px;
+    padding-bottom:20px;
+    padding-left: 25px;
+}
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-grid img {
+  flex: 0 0 calc(33.333% - 10px); 
+  max-width: calc(33.333% - 10px);
+  height: auto;
+}
+.image-grid1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 10px; 
+}
+
+.image-grid1 img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.image-grid2{
+    column-count:3;
+    column-gap:20px;
+}
+.image-grid2{
+    width:100%;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+.image-grid3{
+    font-size:0;
+}
+.image-grid3 img{
+     width:32%;
+     margin:0.5%;
+     display: inline-block;
+     height: auto;
+}

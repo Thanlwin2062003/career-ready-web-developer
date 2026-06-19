@@ -1,0 +1,23 @@
+ p::before {
+            content: "🔥 ";
+        }
+p::after {
+            content: " ✨";
+        }
+/* Score: 1 (one element) */
+p { color: black; }
+
+/* Score: 10 (one class) */
+.text { color: red; }
+
+/* Score: 11 (one class + one element) */
+p.text { color: blue; }
+
+/* Score: 100 (one ID) */
+#main { color: green; }
+
+/* Score: 101 (one ID + one element) */
+p#main { color: yellow; }
+p {
+    color: red !important;  /* Forces this rule */
+}

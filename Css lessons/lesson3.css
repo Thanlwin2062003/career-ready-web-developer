@@ -1,0 +1,38 @@
+.hover-example{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    color: white;
+}
+.hover-example:hover{
+    background-color: blue;
+    width: 200px;
+    height: 200px;
+}
+.first-child{
+    color: green;
+}
+.second-child{
+    color:navy;
+}
+.third-child{
+    color:blueviolet;
+}
+.firstchild-example{
+    color:yellow;
+}
+.secondchild-example{
+    color: blue;
+}
+.book-chapter{
+    margin: 0;
+}
+.second-chapter{
+font-size: 50px;
+text-align: center;
+display: block;
+}
+.second-chapter:befor{
+    content:"❦";
+    display: block;
+}

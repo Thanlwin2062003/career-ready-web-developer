@@ -1,0 +1,49 @@
+.text1{
+    color: red;
+}
+.text2{
+    color:blue;
+}
+.branding{
+    color: red;
+}
+.blog-post-title{
+    color:limegreen;
+}
+.title{
+    color: green;
+}
+.title-2{
+    color: green;
+}
+.main-brand-2{
+    border: 3px solid black;
+    color:red;
+}
+.main-brand-3.title-3{
+    color:green;
+}
+.title-3{
+    color:red;
+}
+.title-4{
+    color:orange;
+}
+h1{
+    color: green;
+}
+h1.main-brand-5{
+    color:red;
+}
+.main-brand-5.title-5{
+    color:orange
+}
+.main-brand-5{
+    color:green;
+}
+#site-brand{
+    color: red;
+}
+h1.nav-head.nav-main.other-useful-class{
+    color:green;
+}

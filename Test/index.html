@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <link rel="stylesheet" href="../Test/style.css">
+</head>
+<body>
+    <p>Hellow World</p>
+    <p>This is a test paragraph</p>
+    <p>Another paragraph with emojis</p>
+     <!-- Test each selector's specificity -->
+    <p>This is a plain paragraph (should be BLACK)</p>
+    
+    <p class="text">This has class="text" (should be BLUE - specificity 11 beats 10)</p>
+    
+    <p id="main">This has id="main" (should be YELLOW - specificity 101 beats 100)</p>
+    
+    <div id="main">This is a div with id="main" (should be GREEN - specificity 100)</div>
+    
+    <div class="text">This div has class="text" (should be RED - specificity 10)</div>
+</body>
+</html>
