@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabrielle CHANEL - Perfume</title>
+    
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="../Project/perfume.css">
+    
+    
+</head>
+<body>
+
+    <div class="container">
+        <!-- ===== PRODUCT CARD ===== -->
+        <div class="card">
+            
+            <!-- IMAGE SECTION -->
+            <div class="product-image">
+                <!-- Replace with your actual image -->
+                <img src="../Project/image-product-desktop.jpg" 
+                     alt="Gabrielle CHANEL Eau De Parfum"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                
+                <!-- Fallback -->
+                <div class="image-fallback" style="display: none;">
+                    <div class="brand">GABRIELLE</div>
+                    <div class="sub-brand">CHANEL</div>
+                    <div class="icon">🧴</div>
+                    <div style="font-size: 11px; color: #6c5b4b; margin-top: 12px; letter-spacing: 3px; font-weight: 500;">EAU DE PARFUM</div>
+                </div>
+            </div>
+
+            <!-- CONTENT SECTION -->
+            <div class="product-content">
+                
+                <!-- Category -->
+                <span class="category">Perfume</span>
+                
+                <!-- Title -->
+                <h1 class="product-title">
+                    Gabrielle<br>
+                    Essence Eau<br>
+                    De Parfum
+                </h1>
+                
+                <!-- Description -->
+                <p class="product-description">
+                    A floral, solar and voluptuous interpretation composed by Olivier Polge, Perfumer-Creator for the House of CHANEL.
+                </p>
+                
+                <!-- Price -->
+                <div class="price-section">
+                    <span class="current-price">$149.99</span>
+                    <span class="original-price">$169.99</span>
+                </div>
+                
+                <!-- Add to Cart Button -->
+                <button class="add-to-cart" onclick="alert('Added to Cart! 🛒')">
+                    <!-- Shopping Cart Icon -->
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.6-6.3l-1.7-3.7h13.5l-1.8 3.7H8.4zM7 2h16v3h-3l-3.6 7.5-3.7-7.5H7z"/>
+                    </svg>
+                    Add to Cart
+                </button>
+                
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
